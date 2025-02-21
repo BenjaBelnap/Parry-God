@@ -13,7 +13,6 @@ radius = 57.85
 [node name="Player" type="CharacterBody2D" parent="GameBoard"]
 position = Vector2(563, 320)
 script = ExtResource("1_avws7")
-speed = 600
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameBoard/Player"]
 z_index = 1
