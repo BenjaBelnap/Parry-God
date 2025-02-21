@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://dy4m8ss7nlmor"]
+[gd_scene load_steps=4 format=3 uid="uid://dy4m8ss7nlmor"]
 
+[ext_resource type="Script" path="res://Scripts/Player.gd" id="1_avws7"]
 [ext_resource type="Texture2D" uid="uid://bb2qihyijd2v1" path="res://icon.svg" id="1_eqsmv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gu3l8"]
@@ -9,8 +10,9 @@ radius = 57.85
 
 [node name="GameBoard" type="Node2D" parent="."]
 
-[node name="Player" type="RigidBody2D" parent="GameBoard"]
+[node name="Player" type="CharacterBody2D" parent="GameBoard"]
 position = Vector2(563, 320)
+script = ExtResource("1_avws7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameBoard/Player"]
 z_index = 1
