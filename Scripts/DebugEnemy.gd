@@ -78,7 +78,9 @@ func _on_timer_timeout():
 	
 
 func _physics_process(delta: float) -> void:
+	print(position.distance_to(navigation_agent.target_position))
 	if player:
 		navigation_agent.target_position = player.global_position
-		velocity = global_position.direction_to(navigation_agent.get_next_path_position()) * max_speed
-		move_and_slide()
+		if position.distance_to(navigation_agent.target_position) > 200:
+			velocity = global_position.direction_to(navigation_agent.get_next_path_position()) * max_speed
+			move_and_slide()
