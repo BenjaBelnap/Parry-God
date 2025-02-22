@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://dy4m8ss7nlmor"]
+[gd_scene load_steps=11 format=3 uid="uid://dy4m8ss7nlmor"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_avws7"]
 [ext_resource type="Texture2D" uid="uid://bb2qihyijd2v1" path="res://icon.svg" id="1_eqsmv"]
 [ext_resource type="Script" path="res://Scripts/DebugEnemy.gd" id="3_5ywbv"]
+[ext_resource type="Script" path="res://Senes/progress_bar.gd" id="3_paudk"]
 [ext_resource type="Script" path="res://Scripts/EnemyDetection.gd" id="4_0cfay"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gu3l8"]
@@ -68,6 +69,14 @@ debug_color = Color(0.972549, 0, 0.431373, 0.419608)
 texture = ExtResource("1_eqsmv")
 
 [node name="Timer" type="Timer" parent="GameBoard/Player"]
+
+[node name="Energy" type="ProgressBar" parent="GameBoard/Player"]
+offset_left = -89.0
+offset_top = -99.0
+offset_right = 89.0
+offset_bottom = -72.0
+show_percentage = false
+script = ExtResource("3_paudk")
 
 [node name="DebugEnemy" type="CharacterBody2D" parent="GameBoard"]
 position = Vector2(310, 312)

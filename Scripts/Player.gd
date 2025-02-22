@@ -3,8 +3,8 @@ extends CharacterBody2D  # Godot 4
 enum State { IDLE, ATTACK, PARRY }	# Define states
 
 class ParryTiming:
-	var perfect_window = 0.2  # 200ms parry window
-	var normal_window = 0.5  # 500ms for normal parry
+	var perfect_window = 0.133333  # 133ms parry window
+	var normal_window = 0.4  # 400ms for normal parry
 	func is_perfect_parry(timing):
 			return timing <= perfect_window
 
@@ -26,11 +26,15 @@ func take_damage(attack_damage: int):
 	print("Did I take damge at ", timing, " ms?")
 	if current_state == State.PARRY:
 		if parry_timer.is_perfect_parry(timing):
+			$Energy.add_energy(attack_damage * 1.5)
 			print("Perfect parry!")
 		elif parry_timer.is_normal_parry(timing):
+			$Energy.add_energy(attack_damage)
 			print("Normal parry.")
 		else:
 			print("Failed parry. Took ", attack_damage, " damage.")
+	else:
+		print("Took ", attack_damage, " damage.")
 
 
 func change_state(new_state):
