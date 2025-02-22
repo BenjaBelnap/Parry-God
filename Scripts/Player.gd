@@ -67,7 +67,7 @@ func take_damage(attack_damage: int):
 		anim_player.play("die")
 		input_lockout = true
 		await get_tree().create_timer(1.8).timeout
-		queue_free()
+
 
 
 func attack():
