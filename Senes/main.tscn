@@ -322,9 +322,24 @@ stream = ExtResource("7_afo2j")
 stream = ExtResource("9_iqx0v")
 
 [node name="Camera2D" type="Camera2D" parent="GameBoard/Player"]
-position_smoothing_enabled = true
 position_smoothing_speed = 3.0
 script = ExtResource("10_mxeii")
+
+[node name="Control" type="Control" parent="GameBoard/Player/Camera2D"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -534.0
+offset_top = 262.0
+offset_right = -534.0
+offset_bottom = 262.0
+
+[node name="HpBar" type="ProgressBar" parent="GameBoard/Player/Camera2D/Control"]
+offset_top = 1.0
+offset_right = 187.0
+offset_bottom = 36.0
+step = 1.0
+value = 100.0
+show_percentage = false
 
 [node name="DebugEnemy" type="CharacterBody2D" parent="GameBoard"]
 position = Vector2(310, 312)

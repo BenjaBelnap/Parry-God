@@ -15,9 +15,9 @@ class ParryTiming:
 @export var acceleration = 2000 # How fast we speed up
 @export var friction = 3000  # How fast we slow down
 @export var parry_speed = .3
-@export var hp = 100
+@export var max_hp = 100
 @export var current_state = State.IDLE
-
+@onready var hp = max_hp
 @export var parry_cooldown = 1.0	# Seconds between parries
 var parry_timer = ParryTiming.new()
 var input_lockout = false
@@ -28,6 +28,7 @@ var parry_lockout = false
 @onready var perfect_audio = $Audio/PerfectParry
 @onready var parry_audio = $Audio/NormalParry
 @onready var camera:Camera2D = $Camera2D
+@onready var hp_bar:ProgressBar = $Camera2D/Control/HpBar
 
 
 func on_hit(attack_damage: int):
@@ -58,6 +59,7 @@ func on_hit(attack_damage: int):
 func take_damage(attack_damage: int):
 	anim_player.play("hurt")
 	hp = hp - attack_damage
+	hp_bar.value = hp
 	hurt_audio.play()
 
 
