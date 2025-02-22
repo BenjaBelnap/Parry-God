@@ -38,6 +38,11 @@ func take_damage(attack_damage: int):
 		print("Took ", attack_damage, " damage.")
 
 
+func attack():
+		print("Player attacks!")
+		$Energy.clear_energy()
+
+
 func change_state(new_state):
 	current_state = new_state
 
@@ -64,6 +69,11 @@ func _physics_process(delta):
 			$Timer.start()
 			print("Start parry.")
 			anim_player.play("parry")
+		elif Input.is_action_just_pressed("attack"):
+			if $Energy.is_full():
+				attack()
+			else:
+				print("Not enough energy.")
 		if Input.is_action_pressed("move_up"):
 			input_dir.y -= 1
 		if Input.is_action_pressed("move_down"):
@@ -86,7 +96,10 @@ func _physics_process(delta):
 
 
 func _on_timer_timeout():
+	if current_state == State.PARRY:
+		print("End parry.")
+	elif current_state == State.ATTACK:
+		print("End attack.")
 	change_state(State.IDLE)
 	input_lockout = false
-	print("End parry.")
 	$Timer.stop()
