@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dy4m8ss7nlmor"]
+[gd_scene load_steps=23 format=3 uid="uid://dy8cy52mvjbr5"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_avws7"]
 [ext_resource type="Shader" path="res://Shaders/parryFlash.gdshader" id="2_8y42r"]
@@ -257,6 +257,11 @@ _data = {
 "swipe": SubResource("Animation_pma10")
 }
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_ie0wx"]
+vertices = PackedVector2Array(1138.03, 635, 9.03125, 635, 10.9609, 14.9766, 1139.96, 13.0078)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(1, 5, 1150, 3, 1148, 645, -1, 645)])
+
 [node name="Main" type="Node2D"]
 
 [node name="GameBoard" type="Node2D" parent="."]
@@ -340,6 +345,11 @@ texture = ExtResource("9_004sd")
 libraries = {
 "": SubResource("AnimationLibrary_11n7b")
 }
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="GameBoard/DebugEnemy"]
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="GameBoard"]
+navigation_polygon = SubResource("NavigationPolygon_ie0wx")
 
 [node name="MainMenu" type="Node2D" parent="."]
 

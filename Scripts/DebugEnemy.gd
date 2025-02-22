@@ -70,3 +70,7 @@ func change_state(new_state):
 
 func _on_timer_timeout():
 	on_cooldown = false
+	
+
+func _physics_process(delta: float) -> void:
+	move_and_slide()
