@@ -18,7 +18,8 @@ radius = 446.45
 [node name="Player" type="CharacterBody2D" parent="GameBoard" groups=["player"]]
 position = Vector2(858, 319)
 script = ExtResource("1_avws7")
-acceleration = 3045
+acceleration = 4165
+friction = 4185
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameBoard/Player"]
 z_index = 1
