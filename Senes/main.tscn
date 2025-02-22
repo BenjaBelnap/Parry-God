@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dy4m8ss7nlmor"]
+[gd_scene load_steps=13 format=3 uid="uid://dy4m8ss7nlmor"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_avws7"]
 [ext_resource type="Texture2D" uid="uid://bb2qihyijd2v1" path="res://icon.svg" id="1_eqsmv"]
@@ -8,6 +8,26 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gu3l8"]
 radius = 57.85
+
+[sub_resource type="Animation" id="Animation_4bm3l"]
+resource_name = "parry"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.6),
+"transitions": PackedFloat32Array(0.517632, 0.378929, 0.435275),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0.00392157, 0.0117647, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t6vxr"]
+_data = {
+"parry": SubResource("Animation_4bm3l")
+}
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fa4uc"]
 radius = 446.45
@@ -79,6 +99,9 @@ show_percentage = false
 script = ExtResource("3_paudk")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="GameBoard/Player"]
+libraries = {
+"": SubResource("AnimationLibrary_t6vxr")
+}
 
 [node name="DebugEnemy" type="CharacterBody2D" parent="GameBoard"]
 position = Vector2(310, 312)
