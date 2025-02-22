@@ -14,6 +14,7 @@ class ParryTiming:
 @export var max_speed = 600	# Top speed
 @export var acceleration = 2000 # How fast we speed up
 @export var friction = 3000  # How fast we slow down
+@export var parry_speed = .3
 @export var current_state = State.IDLE
 
 @export var parry_cooldown = 1.0	# Seconds between parries
@@ -60,9 +61,10 @@ func _ready():
 func _physics_process(delta):
 	var input_dir = Vector2.ZERO
 
-	if not parry_lockout:
+	if !(current_state == State.PARRY):
 		if Input.is_action_pressed("parry"):
 			change_state(State.PARRY)
+			max_speed = max_speed*parry_speed
 			parry_lockout = true
 			$Timer.start()
 			print("Start parry.")
@@ -92,12 +94,14 @@ func _physics_process(delta):
 
 	move_and_slide()
 
-
-func _on_timer_timeout():
+func end_parry():
 	if current_state == State.PARRY:
 		print("End parry.")
+		change_state(State.IDLE)
+		max_speed = max_speed /parry_speed
 	elif current_state == State.ATTACK:
 		print("End attack.")
-	change_state(State.IDLE)
-	parry_lockout = false
 	$Timer.stop()
+
+func _on_timer_timeout():
+	end_parry()
