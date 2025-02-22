@@ -49,7 +49,7 @@ func attack():
 	animationPlayer.play("swipe")  # Play attack animation
 
 	# Enable attack hitbox briefly
-	await get_tree().create_timer(0.2).timeout
+	await get_tree().create_timer(0.4).timeout
 	attackHitbox.monitoring = true
 
 	# Disable hitbox after short window
