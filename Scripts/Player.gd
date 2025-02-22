@@ -32,20 +32,24 @@ func on_hit(attack_damage: int):
 	var timing = $Timer.wait_time - $Timer.time_left
 	print("Did I take damge at ", timing, " ms?")
 	if current_state == State.PARRY:
-		anim_player.play("parry_success", 0)
 		if parry_timer.is_perfect_parry(timing):
+			end_parry()
+			anim_player.play("parry_success", 0)
 			$Energy.add_energy(attack_damage * 1.5)
 			perfect_audio.play()
 			print("Perfect parry!")
+			print("max Speed:", max_speed)
 		elif parry_timer.is_normal_parry(timing):
+			end_parry()
+			anim_player.play("parry_success", 0)
 			$Energy.add_energy(attack_damage)
-			print("Normal parry.")
 			parry_audio.play()
+			
 		else:
-			print("Failed parry. Took ", attack_damage, " damage.")
+
 			take_damage(attack_damage)
 	else:
-		print("Took ", attack_damage, " damage.")
+
 		take_damage(attack_damage)
 		
 
@@ -77,12 +81,8 @@ func _physics_process(delta):
 
 	if !(current_state == State.PARRY):
 		if Input.is_action_pressed("parry"):
-			change_state(State.PARRY)
-			max_speed = max_speed*parry_speed
-			parry_lockout = true
-			$Timer.start()
-			print("Start parry.")
-			anim_player.play("parry")
+			start_parry()
+			Input.action_release("parry")
 		elif Input.is_action_just_pressed("attack"):
 			if $Energy.is_full():
 				attack()
@@ -96,7 +96,7 @@ func _physics_process(delta):
 		input_dir.x -= 1
 	if Input.is_action_pressed("move_right"):
 		input_dir.x += 1
-
+	Input.action_release("parry")
 	input_dir = input_dir.normalized()	# Prevent diagonal speed boost
 
 	if input_dir != Vector2.ZERO:
@@ -107,12 +107,20 @@ func _physics_process(delta):
 		velocity = velocity.move_toward(Vector2.ZERO, friction * delta)
 
 	move_and_slide()
-
+func start_parry():
+	change_state(State.PARRY)
+	max_speed = max_speed*parry_speed
+	parry_lockout = true
+	$Timer.start()
+	print("Start parry.")
+	anim_player.play("parry")
+	
 func end_parry():
 	if current_state == State.PARRY:
 		print("End parry.")
 		change_state(State.IDLE)
 		max_speed = max_speed /parry_speed
+
 	elif current_state == State.ATTACK:
 		print("End attack.")
 	$Timer.stop()

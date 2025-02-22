@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://dy8cy52mvjbr5"]
+[gd_scene load_steps=26 format=3 uid="uid://dy4m8ss7nlmor"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_avws7"]
 [ext_resource type="Shader" path="res://Shaders/parryFlash.gdshader" id="2_8y42r"]
