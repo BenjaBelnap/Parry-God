@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://dy4m8ss7nlmor"]
+[gd_scene load_steps=16 format=3 uid="uid://dy4m8ss7nlmor"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_avws7"]
 [ext_resource type="Texture2D" uid="uid://bb2qihyijd2v1" path="res://icon.svg" id="1_eqsmv"]
+[ext_resource type="Shader" path="res://Shaders/parryFlash.gdshader" id="2_8y42r"]
 [ext_resource type="Script" path="res://Scripts/DebugEnemy.gd" id="3_5ywbv"]
 [ext_resource type="Script" path="res://Senes/progress_bar.gd" id="3_paudk"]
 [ext_resource type="Script" path="res://Scripts/EnemyDetection.gd" id="4_0cfay"]
@@ -9,23 +10,43 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_gu3l8"]
 radius = 57.85
 
-[sub_resource type="Animation" id="Animation_4bm3l"]
-resource_name = "parry"
-tracks/0/type = "value"
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tr7vv"]
+resource_local_to_scene = true
+shader = ExtResource("2_8y42r")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_value = 0.0
+
+[sub_resource type="Animation" id="Animation_luooi"]
+length = 0.001
+tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/path = NodePath("Sprite2D:material:shader_parameter/flash_value")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.6),
-"transitions": PackedFloat32Array(0.517632, 0.378929, 0.435275),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 0.00392157, 0.0117647, 1), Color(1, 1, 1, 1)]
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_4bm3l"]
+resource_name = "parry"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:material:shader_parameter/flash_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0.745, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 1)
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_t6vxr"]
 _data = {
+"RESET": SubResource("Animation_luooi"),
 "parry": SubResource("Animation_4bm3l")
 }
 
@@ -86,6 +107,7 @@ shape = SubResource("CircleShape2D_gu3l8")
 debug_color = Color(0.972549, 0, 0.431373, 0.419608)
 
 [node name="Sprite2D" type="Sprite2D" parent="GameBoard/Player"]
+material = SubResource("ShaderMaterial_tr7vv")
 texture = ExtResource("1_eqsmv")
 
 [node name="Timer" type="Timer" parent="GameBoard/Player"]
