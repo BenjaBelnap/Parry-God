@@ -78,7 +78,6 @@ shape = SubResource("CircleShape2D_fa4uc")
 [node name="Timer" type="Timer" parent="GameBoard/DebugEnemy"]
 
 [node name="AttackHitbox" type="Area2D" parent="GameBoard/DebugEnemy"]
-rotation = 1.5708
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameBoard/DebugEnemy/AttackHitbox"]
 z_index = 1

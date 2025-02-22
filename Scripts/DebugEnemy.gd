@@ -46,16 +46,18 @@ func _process(delta):
 func attack():
 	print("Enemy attacks!")  
 	on_cooldown = true
+	attackHitbox.visible = true
 	animationPlayer.play("swipe")  # Play attack animation
 
 	# Enable attack hitbox briefly
-	await get_tree().create_timer(0.3).timeout
+	await get_tree().create_timer(0.2).timeout
 	attackHitbox.monitoring = true
 
 	# Disable hitbox after short window
-	await get_tree().create_timer(0.2).timeout
+	await get_tree().create_timer(0.4).timeout
 	attackHitbox.monitoring = false
 
+	attackHitbox.visible = false
 	attackTimer.start()
 
 func _on_attack_hit(body):
