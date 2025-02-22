@@ -18,6 +18,8 @@ func _on_player_death():
 	game_over.position = player.position
 	
 	game_over_anim.play("fade_in")
+	await get_tree().create_timer(2).timeout
+	get_tree().change_scene_to_file("res://Senes/main.tscn")
 
 
 func _on_audio_stream_player_finished():
