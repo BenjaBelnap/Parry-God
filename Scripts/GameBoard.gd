@@ -3,6 +3,7 @@ extends Node2D
 @onready var player: CharacterBody2D = $Player
 @onready var game_over_anim: AnimationPlayer = $"Game Over/AnimationPlayer"
 @onready var game_over: Control = $"Game Over"
+@onready var background_music = $AudioStreamPlayer
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
@@ -17,3 +18,7 @@ func _on_player_death():
 	game_over.position = player.position
 	
 	game_over_anim.play("fade_in")
+
+
+func _on_audio_stream_player_finished():
+	background_music.play()
