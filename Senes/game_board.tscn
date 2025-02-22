@@ -1,8 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://cyn504rtaw3fu"]
+[gd_scene load_steps=10 format=3 uid="uid://c5l805h313ma4"]
 
 [ext_resource type="Script" path="res://Scripts/GameBoard.gd" id="1_v0frj"]
-[ext_resource type="PackedScene" uid="uid://byu7qaylvr30u" path="res://Senes/debug_map.tscn" id="2_iutar"]
-[ext_resource type="PackedScene" uid="uid://cy65mld73oh8k" path="res://Senes/player.tscn" id="3_j30aj"]
+[ext_resource type="PackedScene" path="res://Senes/debug_map.tscn" id="2_iutar"]
+[ext_resource type="PackedScene" path="res://Senes/player.tscn" id="3_j30aj"]
 [ext_resource type="PackedScene" uid="uid://bc7yu2c5oj827" path="res://Senes/debug_enemy.tscn" id="4_megjh"]
 [ext_resource type="Texture2D" uid="uid://dqgvv4tln5sv2" path="res://Resources/Sprites/pngegg.png" id="5_4brlh"]
 [ext_resource type="AudioStream" uid="uid://c1t43b6wg2x45" path="res://Resources/Sounds/backgroundMusic.wav" id="6_ftqmn"]
@@ -79,6 +79,7 @@ libraries = {
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_ftqmn")
+volume_db = -6.559
 autoplay = true
 
 [connection signal="dead" from="Player" to="." method="_on_player_death"]
