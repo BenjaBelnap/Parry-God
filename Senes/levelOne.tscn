@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://bvmyyghkx1yau"]
+[gd_scene load_steps=13 format=3 uid="uid://bvmyyghkx1yau"]
 
 [ext_resource type="Texture2D" path="res://Resources/Sprites/Maps/levelOne.png" id="1_fa0yc"]
+[ext_resource type="PackedScene" uid="uid://bc7yu2c5oj827" path="res://Senes/debug_enemy.tscn" id="2_va8yw"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0o38k"]
 normal = Vector2(0, 2.62)
@@ -171,3 +172,18 @@ scale = Vector2(5.61281, 5.7197)
 shape = SubResource("RectangleShape2D_fweum")
 
 [node name="Enemies" type="Node2D" parent="."]
+
+[node name="DebugEnemy" parent="Enemies" instance=ExtResource("2_va8yw")]
+position = Vector2(2092, 2397)
+
+[node name="DebugEnemy2" parent="Enemies" instance=ExtResource("2_va8yw")]
+position = Vector2(2420, 2408)
+
+[node name="DebugEnemy3" parent="Enemies" instance=ExtResource("2_va8yw")]
+position = Vector2(1260, 1291)
+
+[node name="DebugEnemy4" parent="Enemies" instance=ExtResource("2_va8yw")]
+position = Vector2(2165, 725)
+
+[node name="DebugEnemy5" parent="Enemies" instance=ExtResource("2_va8yw")]
+position = Vector2(2176, 1559)
