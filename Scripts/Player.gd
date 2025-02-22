@@ -27,6 +27,8 @@ var parry_lockout = false
 @onready var hurt_audio:AudioStreamPlayer2D = $Audio/HurtAudio
 @onready var perfect_audio = $Audio/PerfectParry
 @onready var parry_audio = $Audio/NormalParry
+@onready var camera:Camera2D = $Camera2D
+
 
 func on_hit(attack_damage: int):
 	var timing = $Timer.wait_time - $Timer.time_left
@@ -74,6 +76,7 @@ func _ready():
 	#print(parry.track_get_key_value())
 	
 	anim_player.update_parry_timing(parry_timer.perfect_window,parry_timer.normal_window,parry_cooldown)
+
 
 
 func _physics_process(delta):
