@@ -266,7 +266,7 @@ _data = {
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_ie0wx"]
 vertices = PackedVector2Array(1138.03, 635, 9.03125, 635, 10.9609, 14.9766, 1139.96, 13.0078)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(1, 5, 1150, 3, 1148, 645, -1, 645)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(1, 5, 1150, 3, 1128, 927, 11, 914)])
 source_geometry_group_name = &"navigation_polygon_source_group"
 
 [node name="Main" type="Node2D"]
@@ -379,7 +379,8 @@ libraries = {
 position = Vector2(548, 7)
 stream = ExtResource("12_amcp4")
 
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="GameBoard"]
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="GameBoard/DebugEnemy"]
+position = Vector2(-655, -458)
 navigation_polygon = SubResource("NavigationPolygon_ie0wx")
 
 [node name="Sprite2D" type="Sprite2D" parent="GameBoard"]
