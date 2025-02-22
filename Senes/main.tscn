@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://dy4m8ss7nlmor"]
+[gd_scene load_steps=29 format=3 uid="uid://dy4m8ss7nlmor"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_avws7"]
 [ext_resource type="Shader" path="res://Shaders/parryFlash.gdshader" id="2_8y42r"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" path="res://Scripts/playerCam.gd" id="10_mxeii"]
 [ext_resource type="Texture2D" uid="uid://bcglwr1pgqcao" path="res://Resources/Sprites/yellow-circle-with-eyes.png" id="10_s7jqq"]
 [ext_resource type="AudioStream" uid="uid://ddodhwpivbtkv" path="res://Resources/Sounds/enemy_attack.wav" id="12_amcp4"]
+[ext_resource type="Texture2D" uid="uid://b7g7f534gp4ss" path="res://Resources/Sprites/Maps/debug.png" id="16_gvwr3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gu3l8"]
 radius = 57.85
@@ -322,6 +323,7 @@ stream = ExtResource("9_iqx0v")
 
 [node name="Camera2D" type="Camera2D" parent="GameBoard/Player"]
 position_smoothing_enabled = true
+position_smoothing_speed = 3.0
 script = ExtResource("10_mxeii")
 
 [node name="DebugEnemy" type="CharacterBody2D" parent="GameBoard"]
@@ -379,6 +381,12 @@ stream = ExtResource("12_amcp4")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="GameBoard"]
 navigation_polygon = SubResource("NavigationPolygon_ie0wx")
+
+[node name="Sprite2D" type="Sprite2D" parent="GameBoard"]
+z_index = -2
+position = Vector2(1588, 1583)
+scale = Vector2(2.48477, 2.48477)
+texture = ExtResource("16_gvwr3")
 
 [node name="MainMenu" type="Node2D" parent="."]
 
