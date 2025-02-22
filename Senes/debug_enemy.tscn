@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://bc7yu2c5oj827"]
+[gd_scene load_steps=14 format=3 uid="uid://bc7yu2c5oj827"]
 
 [ext_resource type="Script" path="res://Scripts/DebugEnemy.gd" id="1_pgxdx"]
 [ext_resource type="Texture2D" uid="uid://bcglwr1pgqcao" path="res://Resources/Sprites/yellow-circle-with-eyes.png" id="2_vjma8"]
 [ext_resource type="Script" path="res://Scripts/EnemyDetection.gd" id="3_ykpk8"]
 [ext_resource type="Texture2D" uid="uid://byk277wk4ea8" path="res://Resources/Sprites/yellow-sword.png" id="4_vicid"]
 [ext_resource type="AudioStream" uid="uid://ddodhwpivbtkv" path="res://Resources/Sounds/enemy_attack.wav" id="5_q50wa"]
+[ext_resource type="AudioStream" uid="uid://bdifynsque42q" path="res://Resources/Sounds/enemyDeath.wav" id="6_c4mwl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gu3l8"]
 radius = 57.85
@@ -45,8 +46,25 @@ tracks/1/keys = {
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_j5csh"]
+resource_name = "death"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.4, 1.7),
+"transitions": PackedFloat32Array(1, 0.5),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_11n7b"]
 _data = {
+"death": SubResource("Animation_j5csh"),
 "swipe": SubResource("Animation_pma10")
 }
 
@@ -83,6 +101,7 @@ shape = SubResource("CircleShape2D_fa4uc")
 [node name="AttackHitbox" type="Area2D" parent="."]
 modulate = Color(1, 1, 1, 0)
 z_index = -1
+rotation = 3.14159
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackHitbox"]
 z_index = 1
@@ -107,6 +126,10 @@ libraries = {
 [node name="Swing" type="AudioStreamPlayer2D" parent="Audio"]
 position = Vector2(548, 7)
 stream = ExtResource("5_q50wa")
+
+[node name="Death" type="AudioStreamPlayer2D" parent="Audio"]
+position = Vector2(548, 7)
+stream = ExtResource("6_c4mwl")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 position = Vector2(-655, -458)

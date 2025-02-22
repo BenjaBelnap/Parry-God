@@ -1,9 +1,9 @@
 extends CharacterBody2D
 
-enum State { IDLE, ATTACK }  # Define states
+enum State { IDLE, ATTACK , DYING}  # Define states
 
 @export var attack_interval = 2.0  # Seconds between attacks
-@export var attack_damage = 100  # Damage dealt
+@export var attack_damage = 20  # Damage dealt
 @export var attack_range = 100  # Distance to attack
 
 @export var max_hp = 10
@@ -19,10 +19,12 @@ enum State { IDLE, ATTACK }  # Define states
 @onready var attackTimer: Timer = $Timer
 @onready var animationPlayer: AnimationPlayer = $AnimationPlayer
 @onready var swing_audio:AudioStreamPlayer2D = $Audio/Swing
+@onready var death_audio:AudioStreamPlayer2D = $Audio/Death
 
 @export var current_state = State.IDLE
 var player:CharacterBody2D = null
 var on_cooldown = false
+signal death
 
 signal attack_hit(damage)  # Signal for when an attack hits the player
 
@@ -42,10 +44,17 @@ func _on_hit(attack_damage: int):
 	curr_hp -= attack_damage
 	if curr_hp < 0:
 		print("Enemy died.")
+		change_state(State.DYING)
+		death_audio.play()
+		animationPlayer.play("death")
+		await get_tree().create_timer(2).timeout
+		emit_signal("death")
 		queue_free()
-	
+
 
 func _on_player_detected(new_player):
+	if current_state == State.DYING:
+		return
 	player = new_player
 	change_state(State.ATTACK)
 	attack_hit.connect(player._on_hit)
@@ -57,6 +66,8 @@ func _on_player_lost():
 
 func _process(delta):
 	match current_state:
+		State.DYING:
+			pass
 		State.IDLE:
 			pass
 		State.ATTACK:
