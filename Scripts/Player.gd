@@ -33,7 +33,7 @@ var parry_lockout = false
 signal dead
 
 
-func on_hit(attack_damage: int):
+func _on_hit(attack_damage: int):
 	var timing = $Timer.wait_time - $Timer.time_left
 	print("Did I take damge at ", timing, " ms?")
 	if current_state == State.PARRY:

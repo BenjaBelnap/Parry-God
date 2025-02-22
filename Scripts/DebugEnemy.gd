@@ -18,7 +18,7 @@ enum State { IDLE, ATTACK }  # Define states
 @onready var swing_audio:AudioStreamPlayer2D = $Audio/Swing
 
 @export var current_state = State.IDLE
-var player = null
+var player:CharacterBody2D = null
 var on_cooldown = false
 
 signal attack_hit(damage)  # Signal for when an attack hits the player
@@ -36,6 +36,7 @@ func _ready():
 func _on_player_detected(new_player):
 	player = new_player
 	change_state(State.ATTACK)
+	attack_hit.connect(player._on_hit)
 
 func _on_player_lost():
 	player = null

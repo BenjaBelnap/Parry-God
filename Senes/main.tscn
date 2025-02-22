@@ -511,7 +511,6 @@ libraries = {
 
 [connection signal="dead" from="GameBoard/Player" to="GameBoard" method="_on_player_death"]
 [connection signal="timeout" from="GameBoard/Player/Timer" to="GameBoard/Player" method="_on_timer_timeout"]
-[connection signal="attack_hit" from="GameBoard/DebugEnemy" to="GameBoard/Player" method="on_hit"]
 [connection signal="body_entered" from="GameBoard/DebugEnemy/DetectionArea" to="GameBoard/DebugEnemy/DetectionArea" method="_on_body_entered"]
 [connection signal="body_exited" from="GameBoard/DebugEnemy/DetectionArea" to="GameBoard/DebugEnemy/DetectionArea" method="_on_body_exited"]
 [connection signal="player_detected" from="GameBoard/DebugEnemy/DetectionArea" to="GameBoard/DebugEnemy" method="_on_player_detected"]
