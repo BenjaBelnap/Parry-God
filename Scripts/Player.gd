@@ -82,8 +82,10 @@ func attack():
 
 
 func _on_attack_hit(enemy):
-	print("Player attack hit.")
-	
+	if !enemy.is_in_group("player"):
+		print("Player attack hit.")
+		attack_hitbox.monitoring = false
+		emit_signal("attack_hit",50)
 
 
 func change_state(new_state):
@@ -95,7 +97,7 @@ func _ready():
 	
 	anim_player.update_parry_timing(parry_timer.perfect_window,parry_timer.normal_window,parry_cooldown)
 	attack_hitbox.monitoring = false
-	attack_hit.connect(_on_attack_hit)
+	attack_hitbox.body_entered.connect(_on_attack_hit)
 
 
 func _physics_process(delta):

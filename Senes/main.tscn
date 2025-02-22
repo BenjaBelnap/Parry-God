@@ -25,6 +25,9 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_gu3l8"]
 radius = 57.85
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1mf5i"]
+size = Vector2(230, 242)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tr7vv"]
 resource_local_to_scene = true
 shader = ExtResource("2_8y42r")
@@ -255,9 +258,6 @@ _data = {
 "parry_success": SubResource("Animation_d6jvf")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1mf5i"]
-size = Vector2(230, 242)
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_fa4uc"]
 radius = 446.45
 
@@ -369,10 +369,23 @@ acceleration = 4165
 friction = 4185
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameBoard/Player"]
-visible = false
 z_index = 1
 shape = SubResource("CircleShape2D_gu3l8")
 debug_color = Color(0.972549, 0, 0.431373, 0.419608)
+
+[node name="AttackHitbox" type="Area2D" parent="GameBoard/Player"]
+visible = false
+rotation = -0.0254318
+script = ExtResource("14_7wyu5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameBoard/Player/AttackHitbox"]
+position = Vector2(-105, 1)
+shape = SubResource("RectangleShape2D_1mf5i")
+
+[node name="Sprite2D" type="Sprite2D" parent="GameBoard/Player/AttackHitbox"]
+position = Vector2(-104, -2.00001)
+scale = Vector2(0.3675, 0.35)
+texture = ExtResource("7_s44vx")
 
 [node name="Sprite2D" type="Sprite2D" parent="GameBoard/Player"]
 material = SubResource("ShaderMaterial_tr7vv")
@@ -430,19 +443,6 @@ offset_bottom = 36.0
 step = 1.0
 value = 100.0
 show_percentage = false
-
-[node name="AttackHitbox" type="Area2D" parent="GameBoard/Player"]
-rotation = -0.0254318
-script = ExtResource("14_7wyu5")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GameBoard/Player/AttackHitbox"]
-position = Vector2(-105, 1)
-shape = SubResource("RectangleShape2D_1mf5i")
-
-[node name="Sprite2D" type="Sprite2D" parent="GameBoard/Player/AttackHitbox"]
-position = Vector2(-104, -2.00001)
-scale = Vector2(0.3675, 0.35)
-texture = ExtResource("7_s44vx")
 
 [node name="DebugEnemy" type="CharacterBody2D" parent="GameBoard"]
 position = Vector2(310, 312)
