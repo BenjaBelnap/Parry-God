@@ -1,14 +1,17 @@
+<<<<<<< Updated upstream
 [gd_scene load_steps=21 format=3 uid="uid://dy4m8ss7nlmor"]
+=======
+[gd_scene load_steps=22 format=3 uid="uid://dy4m8ss7nlmor"]
+>>>>>>> Stashed changes
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_avws7"]
+[ext_resource type="Texture2D" uid="uid://bb2qihyijd2v1" path="res://icon.svg" id="1_eqsmv"]
 [ext_resource type="Shader" path="res://Shaders/parryFlash.gdshader" id="2_8y42r"]
 [ext_resource type="Script" path="res://Scripts/DebugEnemy.gd" id="3_5ywbv"]
 [ext_resource type="Texture2D" uid="uid://w6honfb5qbg4" path="res://Resources/Sprites/blue-circle.svg" id="3_dw3vp"]
 [ext_resource type="Script" path="res://Senes/progress_bar.gd" id="3_paudk"]
 [ext_resource type="Script" path="res://Scripts/EnemyDetection.gd" id="4_0cfay"]
 [ext_resource type="Script" path="res://Scripts/AnimationPlayer.gd" id="5_gnpn2"]
-[ext_resource type="Texture2D" uid="uid://dhrbn3m0ma0ig" path="res://Resources/Sprites/yellow-circle.svg" id="7_s44vx"]
-[ext_resource type="Texture2D" uid="uid://byk277wk4ea8" path="res://Resources/Sprites/yellow-sword.png" id="9_004sd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gu3l8"]
 radius = 57.85
@@ -224,7 +227,7 @@ height = 216.0
 
 [sub_resource type="Animation" id="Animation_pma10"]
 resource_name = "swipe"
-length = 0.997
+length = 0.68
 step = 0.0265
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -233,10 +236,10 @@ tracks/0/path = NodePath("AttackHitbox:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.265, 0.583, 0.742),
-"transitions": PackedFloat32Array(1.46409, 3.24902, 0.482969),
+"times": PackedFloat32Array(0.2385, 0.53),
+"transitions": PackedFloat32Array(0.217638, 0.267944),
 "update": 0,
-"values": [0.0, 0.205949, 3.14159]
+"values": [0.0, 1.5708]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -245,7 +248,7 @@ tracks/1/path = NodePath("AttackHitbox:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1325, 0.8215, 0.9805),
+"times": PackedFloat32Array(0, 0.159, 0.5565, 0.6625),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
@@ -255,6 +258,17 @@ tracks/1/keys = {
 _data = {
 "swipe": SubResource("Animation_pma10")
 }
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_bkmhu"]
+vertices = PackedVector2Array(449, 70, 46.2969, 70, 46.8672, 24.9375, 1266, 18.0469, 43, 330.133, 43.9219, 258, 433.461, 258, 433.461, 569, 44.9375, 730.531, 1266, 674.438, 670, 569, 670, 127.813, 449, 127.813)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7, 8), PackedInt32Array(9, 8, 7, 10), PackedInt32Array(3, 9, 10, 11), PackedInt32Array(0, 3, 11, 12)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(37, 15, 1276, 8, 1276, 684, 35, 741, 33, 330)])
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nbsx0"]
+size = Vector2(38.9885, 79.1847)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oud35"]
+size = Vector2(70.7606, 31.5843)
 
 [node name="Main" type="Node2D"]
 
@@ -303,8 +317,7 @@ shape = SubResource("CircleShape2D_gu3l8")
 debug_color = Color(0.972549, 0, 0.431373, 0.419608)
 
 [node name="Sprite2D" type="Sprite2D" parent="GameBoard/DebugEnemy"]
-scale = Vector2(0.1825, 0.1825)
-texture = ExtResource("7_s44vx")
+texture = ExtResource("1_eqsmv")
 
 [node name="DetectionArea" type="Area2D" parent="GameBoard/DebugEnemy"]
 position = Vector2(-248, -284)
@@ -319,7 +332,7 @@ shape = SubResource("CircleShape2D_fa4uc")
 [node name="AttackHitbox" type="Area2D" parent="GameBoard/DebugEnemy"]
 modulate = Color(1, 1, 1, 0)
 z_index = -1
-rotation = 3.14159
+rotation = 1.5708
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameBoard/DebugEnemy/AttackHitbox"]
 z_index = 1
@@ -327,15 +340,49 @@ position = Vector2(0, -107)
 shape = SubResource("CapsuleShape2D_avm3e")
 
 [node name="Sprite2D" type="Sprite2D" parent="GameBoard/DebugEnemy/AttackHitbox"]
-position = Vector2(-0.000385284, -106)
-rotation = -1.57079
-scale = Vector2(0.458059, 0.480997)
-texture = ExtResource("9_004sd")
+position = Vector2(0.499998, -109)
+scale = Vector2(0.195313, 1.65625)
+texture = ExtResource("1_eqsmv")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="GameBoard/DebugEnemy"]
 libraries = {
 "": SubResource("AnimationLibrary_11n7b")
 }
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="GameBoard/DebugEnemy"]
+path_postprocessing = 1
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="GameBoard"]
+position = Vector2(40, -36)
+navigation_polygon = SubResource("NavigationPolygon_bkmhu")
+
+[node name="Terrain" type="Node" parent="GameBoard/NavigationRegion2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="GameBoard/NavigationRegion2D/Terrain"]
+scale = Vector2(1.69087, 3.83919)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameBoard/NavigationRegion2D/Terrain/StaticBody2D"]
+position = Vector2(349.957, 81.3725)
+scale = Vector2(3.28467, 1.38547)
+shape = SubResource("RectangleShape2D_nbsx0")
+
+[node name="Sprite2D" type="Sprite2D" parent="GameBoard/NavigationRegion2D/Terrain/StaticBody2D"]
+position = Vector2(350.009, 80.6582)
+scale = Vector2(1, 0.856047)
+texture = ExtResource("1_eqsmv")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="GameBoard/NavigationRegion2D/Terrain"]
+scale = Vector2(1.69087, 3.83919)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameBoard/NavigationRegion2D/Terrain/StaticBody2D2"]
+position = Vector2(167.074, 33.3404)
+scale = Vector2(3.28467, 1.38547)
+shape = SubResource("RectangleShape2D_oud35")
+
+[node name="Sprite2D" type="Sprite2D" parent="GameBoard/NavigationRegion2D/Terrain/StaticBody2D2"]
+position = Vector2(165.004, 31.5171)
+scale = Vector2(1.84726, 0.361921)
+texture = ExtResource("1_eqsmv")
 
 [node name="MainMenu" type="Node2D" parent="."]
 
