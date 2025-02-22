@@ -81,4 +81,5 @@ libraries = {
 stream = ExtResource("6_ftqmn")
 autoplay = true
 
+[connection signal="dead" from="Player" to="." method="_on_player_death"]
 [connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]
