@@ -19,6 +19,7 @@ class ParryTiming:
 @export var parry_cooldown = 1.0	# Seconds between parries
 var parry_timer = ParryTiming.new()
 var input_lockout = false
+var parry_lockout = false
 
 @onready var anim_player:AnimationPlayer = $AnimationPlayer
 
@@ -58,11 +59,11 @@ func _ready():
 
 func _physics_process(delta):
 	var input_dir = Vector2.ZERO
-	
-	if not input_lockout:
+
+	if not parry_lockout:
 		if Input.is_action_pressed("parry"):
 			change_state(State.PARRY)
-			input_lockout = true
+			parry_lockout = true
 			$Timer.start()
 			print("Start parry.")
 			anim_player.play("parry")
@@ -71,14 +72,14 @@ func _physics_process(delta):
 				attack()
 			else:
 				print("Not enough energy.")
-		if Input.is_action_pressed("move_up"):
-			input_dir.y -= 1
-		if Input.is_action_pressed("move_down"):
-			input_dir.y += 1
-		if Input.is_action_pressed("move_left"):
-			input_dir.x -= 1
-		if Input.is_action_pressed("move_right"):
-			input_dir.x += 1
+	if Input.is_action_pressed("move_up"):
+		input_dir.y -= 1
+	if Input.is_action_pressed("move_down"):
+		input_dir.y += 1
+	if Input.is_action_pressed("move_left"):
+		input_dir.x -= 1
+	if Input.is_action_pressed("move_right"):
+		input_dir.x += 1
 
 	input_dir = input_dir.normalized()	# Prevent diagonal speed boost
 
@@ -98,5 +99,5 @@ func _on_timer_timeout():
 	elif current_state == State.ATTACK:
 		print("End attack.")
 	change_state(State.IDLE)
-	input_lockout = false
+	parry_lockout = false
 	$Timer.stop()
