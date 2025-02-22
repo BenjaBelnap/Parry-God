@@ -15,6 +15,7 @@ enum State { IDLE, ATTACK }  # Define states
 @onready var attackHitbox: Area2D = $AttackHitbox
 @onready var attackTimer: Timer = $Timer
 @onready var animationPlayer: AnimationPlayer = $AnimationPlayer
+@onready var swing_audio:AudioStreamPlayer2D = $Audio/Swing
 
 @export var current_state = State.IDLE
 var player = null
@@ -54,13 +55,16 @@ func attack():
 	print("Enemy attacks!")  
 	on_cooldown = true
 	animationPlayer.play("swipe")  # Play attack animation
+	
+	
 
 	# Enable attack hitbox briefly
 	await get_tree().create_timer(0.4).timeout
 	attackHitbox.monitoring = true
-
+	await get_tree().create_timer(0.1).timeout
+	swing_audio.play()
 	# Disable hitbox after short window
-	await get_tree().create_timer(0.4).timeout
+	await get_tree().create_timer(0.3).timeout
 	attackHitbox.monitoring = false
 
 	attackTimer.start()
