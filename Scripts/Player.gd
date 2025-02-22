@@ -15,6 +15,7 @@ class ParryTiming:
 @export var acceleration = 2000 # How fast we speed up
 @export var friction = 3000  # How fast we slow down
 @export var parry_speed = .3
+@export var hp = 100
 @export var current_state = State.IDLE
 
 @export var parry_cooldown = 1.0	# Seconds between parries
@@ -24,7 +25,7 @@ var parry_lockout = false
 
 @onready var anim_player:AnimationPlayer = $AnimationPlayer
 
-func take_damage(attack_damage: int):
+func on_hit(attack_damage: int):
 	var timing = $Timer.wait_time - $Timer.time_left
 	print("Did I take damge at ", timing, " ms?")
 	if current_state == State.PARRY:
@@ -37,8 +38,15 @@ func take_damage(attack_damage: int):
 			print("Normal parry.")
 		else:
 			print("Failed parry. Took ", attack_damage, " damage.")
+			take_damage(attack_damage)
 	else:
 		print("Took ", attack_damage, " damage.")
+		take_damage(attack_damage)
+		
+
+func take_damage(attack_damage: int):
+	anim_player.play("hurt")
+	hp = hp - attack_damage
 
 
 func attack():
