@@ -120,6 +120,7 @@ libraries = {
 }
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_postprocessing = 1
 
 [node name="Audio" type="Node2D" parent="."]
 

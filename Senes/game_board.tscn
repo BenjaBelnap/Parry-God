@@ -1,9 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://c5l805h313ma4"]
+[gd_scene load_steps=8 format=3 uid="uid://c5l805h313ma4"]
 
 [ext_resource type="Script" path="res://Scripts/GameBoard.gd" id="1_v0frj"]
-[ext_resource type="PackedScene" path="res://Senes/debug_map.tscn" id="2_iutar"]
 [ext_resource type="PackedScene" path="res://Senes/player.tscn" id="3_j30aj"]
-[ext_resource type="PackedScene" uid="uid://bc7yu2c5oj827" path="res://Senes/debug_enemy.tscn" id="4_megjh"]
 [ext_resource type="Texture2D" uid="uid://dqgvv4tln5sv2" path="res://Resources/Sprites/pngegg.png" id="5_4brlh"]
 [ext_resource type="AudioStream" uid="uid://c1t43b6wg2x45" path="res://Resources/Sounds/backgroundMusic.wav" id="6_ftqmn"]
 
@@ -47,11 +45,7 @@ _data = {
 [node name="GameBoard" type="Node2D"]
 script = ExtResource("1_v0frj")
 
-[node name="DebugMap" parent="." instance=ExtResource("2_iutar")]
-
 [node name="Player" parent="." instance=ExtResource("3_j30aj")]
-
-[node name="DebugEnemy" parent="." instance=ExtResource("4_megjh")]
 
 [node name="Game Over" type="Control" parent="."]
 layout_mode = 3

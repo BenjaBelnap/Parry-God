@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://bvmyyghkx1yau"]
 
-[ext_resource type="Texture2D" path="res://Resources/Sprites/Maps/levelOne.png" id="1_fa0yc"]
-[ext_resource type="PackedScene" uid="uid://bc7yu2c5oj827" path="res://Senes/debug_enemy.tscn" id="2_va8yw"]
+[ext_resource type="Texture2D" uid="uid://bcp02ea3w5dmx" path="res://Resources/Sprites/Maps/levelOne.png" id="1_tncgw"]
+[ext_resource type="PackedScene" uid="uid://bc7yu2c5oj827" path="res://Senes/debug_enemy.tscn" id="2_ixokb"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0o38k"]
 normal = Vector2(0, 2.62)
@@ -31,9 +31,10 @@ size = Vector2(35.2993, 3.70609)
 [node name="LevelOne" type="Node2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -2
 position = Vector2(1282, 1277)
 scale = Vector2(2, 2)
-texture = ExtResource("1_fa0yc")
+texture = ExtResource("1_tncgw")
 
 [node name="Collisions" type="Node2D" parent="."]
 
@@ -173,17 +174,17 @@ shape = SubResource("RectangleShape2D_fweum")
 
 [node name="Enemies" type="Node2D" parent="."]
 
-[node name="DebugEnemy" parent="Enemies" instance=ExtResource("2_va8yw")]
+[node name="DebugEnemy" parent="Enemies" instance=ExtResource("2_ixokb")]
 position = Vector2(2092, 2397)
 
-[node name="DebugEnemy2" parent="Enemies" instance=ExtResource("2_va8yw")]
+[node name="DebugEnemy2" parent="Enemies" instance=ExtResource("2_ixokb")]
 position = Vector2(2420, 2408)
 
-[node name="DebugEnemy3" parent="Enemies" instance=ExtResource("2_va8yw")]
+[node name="DebugEnemy3" parent="Enemies" instance=ExtResource("2_ixokb")]
 position = Vector2(1260, 1291)
 
-[node name="DebugEnemy4" parent="Enemies" instance=ExtResource("2_va8yw")]
+[node name="DebugEnemy4" parent="Enemies" instance=ExtResource("2_ixokb")]
 position = Vector2(2165, 725)
 
-[node name="DebugEnemy5" parent="Enemies" instance=ExtResource("2_va8yw")]
+[node name="DebugEnemy5" parent="Enemies" instance=ExtResource("2_ixokb")]
 position = Vector2(2176, 1559)
