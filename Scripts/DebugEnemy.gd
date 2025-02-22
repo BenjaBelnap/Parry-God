@@ -3,7 +3,7 @@ extends CharacterBody2D
 enum State { IDLE, ATTACK }  # Define states
 
 @export var attack_interval = 2.0  # Seconds between attacks
-@export var attack_damage = 10  # Damage dealt
+@export var attack_damage = 100  # Damage dealt
 @export var attack_range = 100  # Distance to attack
 
 @export var max_speed = 300	# Top speed

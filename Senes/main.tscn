@@ -1,7 +1,9 @@
-[gd_scene load_steps=29 format=3 uid="uid://dy4m8ss7nlmor"]
+[gd_scene load_steps=36 format=3 uid="uid://dy4m8ss7nlmor"]
 
+[ext_resource type="Script" path="res://Scripts/main.gd" id="1_6h4b3"]
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_avws7"]
 [ext_resource type="Shader" path="res://Shaders/parryFlash.gdshader" id="2_8y42r"]
+[ext_resource type="Script" path="res://Scripts/GameBoard.gd" id="2_w3ol3"]
 [ext_resource type="Script" path="res://Scripts/DebugEnemy.gd" id="3_5ywbv"]
 [ext_resource type="Texture2D" uid="uid://ctk7lnvlmdb31" path="res://Resources/Sprites/blue-circle-with-eyes.png" id="3_db5vu"]
 [ext_resource type="Script" path="res://Senes/progress_bar.gd" id="3_paudk"]
@@ -16,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://bcglwr1pgqcao" path="res://Resources/Sprites/yellow-circle-with-eyes.png" id="10_s7jqq"]
 [ext_resource type="AudioStream" uid="uid://ddodhwpivbtkv" path="res://Resources/Sounds/enemy_attack.wav" id="12_amcp4"]
 [ext_resource type="Texture2D" uid="uid://b7g7f534gp4ss" path="res://Resources/Sprites/Maps/debug.png" id="16_gvwr3"]
+[ext_resource type="Texture2D" uid="uid://dqgvv4tln5sv2" path="res://Resources/Sprites/pngegg.png" id="19_2u1jo"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gu3l8"]
 radius = 57.85
@@ -82,6 +85,18 @@ tracks/4/keys = {
 "handle_modes": PackedInt32Array(0),
 "points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Sprite2D:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_5sxlq"]
@@ -214,9 +229,25 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.2, 1)
 }
 
+[sub_resource type="Animation" id="Animation_a2fra"]
+resource_name = "die"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.2, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_t6vxr"]
 _data = {
 "RESET": SubResource("Animation_luooi"),
+"die": SubResource("Animation_a2fra"),
 "hurt": SubResource("Animation_5sxlq"),
 "parry": SubResource("Animation_4bm3l"),
 "parry_success": SubResource("Animation_d6jvf")
@@ -269,9 +300,54 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(1, 5, 1150, 3, 1139, 639, 5, 639)])
 source_geometry_group_name = &"navigation_polygon_source_group"
 
+[sub_resource type="Animation" id="Animation_77t2u"]
+resource_name = "fade_in"
+length = 2.002
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.9, 2),
+"transitions": PackedFloat32Array(1, 0.5),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_jgm6p"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pu3nj"]
+_data = {
+"fade_in": SubResource("Animation_77t2u"),
+"fade_out": SubResource("Animation_jgm6p")
+}
+
 [node name="Main" type="Node2D"]
+script = ExtResource("1_6h4b3")
 
 [node name="GameBoard" type="Node2D" parent="."]
+script = ExtResource("2_w3ol3")
+
+[node name="Map" type="Sprite2D" parent="GameBoard"]
+z_index = -2
+position = Vector2(1588, 1583)
+scale = Vector2(2.48477, 2.48477)
+texture = ExtResource("16_gvwr3")
 
 [node name="Player" type="CharacterBody2D" parent="GameBoard" groups=["player"]]
 position = Vector2(858, 319)
@@ -399,14 +475,33 @@ position = Vector2(-655, -458)
 scale = Vector2(1.16818, 1.42015)
 navigation_polygon = SubResource("NavigationPolygon_ie0wx")
 
-[node name="Sprite2D" type="Sprite2D" parent="GameBoard"]
-z_index = -2
-position = Vector2(1588, 1583)
-scale = Vector2(2.48477, 2.48477)
-texture = ExtResource("16_gvwr3")
+[node name="Game Over" type="Control" parent="GameBoard"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="GameBoard/Game Over"]
+modulate = Color(1, 1, 1, 0)
+scale = Vector2(2.09, 2.09)
+texture = ExtResource("19_2u1jo")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GameBoard/Game Over"]
+libraries = {
+"": SubResource("AnimationLibrary_pu3nj")
+}
 
 [node name="MainMenu" type="Node2D" parent="."]
 
+[connection signal="dead" from="GameBoard/Player" to="GameBoard" method="_on_player_death"]
 [connection signal="timeout" from="GameBoard/Player/Timer" to="GameBoard/Player" method="_on_timer_timeout"]
 [connection signal="attack_hit" from="GameBoard/DebugEnemy" to="GameBoard/Player" method="on_hit"]
 [connection signal="body_entered" from="GameBoard/DebugEnemy/DetectionArea" to="GameBoard/DebugEnemy/DetectionArea" method="_on_body_entered"]

@@ -65,6 +65,10 @@ func take_damage(attack_damage: int):
 	hurt_audio.play()
 	if hp <= 0:
 		emit_signal("dead")
+		anim_player.play("die")
+		input_lockout = true
+		await get_tree().create_timer(1.8).timeout
+		queue_free()
 
 
 func attack():
@@ -87,7 +91,10 @@ func _ready():
 
 func _physics_process(delta):
 	var input_dir = Vector2.ZERO
-
+	
+	if input_lockout:
+		return
+	
 	if !(current_state == State.PARRY):
 		if Input.is_action_pressed("parry"):
 			start_parry()
