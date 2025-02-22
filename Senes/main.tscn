@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://dy4m8ss7nlmor"]
+[gd_scene load_steps=39 format=3 uid="uid://dy4m8ss7nlmor"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_6h4b3"]
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_avws7"]
@@ -12,11 +12,13 @@
 [ext_resource type="Script" path="res://Scripts/AnimationPlayer.gd" id="5_gnpn2"]
 [ext_resource type="AudioStream" uid="uid://dvuadi7p7nk8" path="res://Resources/Sounds/player_hurt.wav" id="6_024fd"]
 [ext_resource type="AudioStream" uid="uid://dp87h1xlmr6o" path="res://Resources/Sounds/glass-ting-89283.mp3" id="7_afo2j"]
+[ext_resource type="Texture2D" uid="uid://dhrbn3m0ma0ig" path="res://Resources/Sprites/yellow-circle.svg" id="7_s44vx"]
 [ext_resource type="Texture2D" uid="uid://byk277wk4ea8" path="res://Resources/Sprites/yellow-sword.png" id="9_004sd"]
 [ext_resource type="AudioStream" uid="uid://dd08e7cep1ps7" path="res://Resources/Sounds/low-ting.wav" id="9_iqx0v"]
 [ext_resource type="Script" path="res://Scripts/playerCam.gd" id="10_mxeii"]
 [ext_resource type="Texture2D" uid="uid://bcglwr1pgqcao" path="res://Resources/Sprites/yellow-circle-with-eyes.png" id="10_s7jqq"]
 [ext_resource type="AudioStream" uid="uid://ddodhwpivbtkv" path="res://Resources/Sounds/enemy_attack.wav" id="12_amcp4"]
+[ext_resource type="Script" path="res://Senes/attack_hitbox.gd" id="14_7wyu5"]
 [ext_resource type="Texture2D" uid="uid://b7g7f534gp4ss" path="res://Resources/Sprites/Maps/debug.png" id="16_gvwr3"]
 [ext_resource type="Texture2D" uid="uid://dqgvv4tln5sv2" path="res://Resources/Sprites/pngegg.png" id="19_2u1jo"]
 
@@ -97,6 +99,21 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_a2fra"]
+resource_name = "die"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.2, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_5sxlq"]
@@ -229,21 +246,6 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.2, 1)
 }
 
-[sub_resource type="Animation" id="Animation_a2fra"]
-resource_name = "die"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.2, 0.7),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_t6vxr"]
 _data = {
 "RESET": SubResource("Animation_luooi"),
@@ -252,6 +254,9 @@ _data = {
 "parry": SubResource("Animation_4bm3l"),
 "parry_success": SubResource("Animation_d6jvf")
 }
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1mf5i"]
+size = Vector2(230, 242)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fa4uc"]
 radius = 446.45
@@ -418,12 +423,26 @@ offset_right = -534.0
 offset_bottom = 262.0
 
 [node name="HpBar" type="ProgressBar" parent="GameBoard/Player/Camera2D/Control"]
+layout_mode = 0
 offset_top = 1.0
 offset_right = 187.0
 offset_bottom = 36.0
 step = 1.0
 value = 100.0
 show_percentage = false
+
+[node name="AttackHitbox" type="Area2D" parent="GameBoard/Player"]
+script = ExtResource("14_7wyu5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameBoard/Player/AttackHitbox"]
+visible = false
+position = Vector2(-105, 1)
+shape = SubResource("RectangleShape2D_1mf5i")
+
+[node name="Sprite2D" type="Sprite2D" parent="GameBoard/Player/AttackHitbox"]
+position = Vector2(-104, -2.00001)
+scale = Vector2(0.3675, 0.35)
+texture = ExtResource("7_s44vx")
 
 [node name="DebugEnemy" type="CharacterBody2D" parent="GameBoard"]
 position = Vector2(310, 312)
@@ -452,7 +471,6 @@ shape = SubResource("CircleShape2D_fa4uc")
 [node name="AttackHitbox" type="Area2D" parent="GameBoard/DebugEnemy"]
 modulate = Color(1, 1, 1, 0)
 z_index = -1
-rotation = 3.14159
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameBoard/DebugEnemy/AttackHitbox"]
 z_index = 1

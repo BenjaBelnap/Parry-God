@@ -33,10 +33,15 @@ func _ready():
 	detectionArea.connect("player_lost", _on_player_lost)
 	attackHitbox.body_entered.connect(_on_attack_hit)
 
+
+func _on_hit(attack_damage: int):
+	print("Enemy got hit.")
+
 func _on_player_detected(new_player):
 	player = new_player
 	change_state(State.ATTACK)
 	attack_hit.connect(player._on_hit)
+	#player.attack_hit.connect(_on_hit)
 
 func _on_player_lost():
 	player = null
