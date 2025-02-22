@@ -40,6 +40,8 @@ func _process(delta):
 		State.IDLE:
 			pass
 		State.ATTACK:
+			var dir = global_position.direction_to(player.global_position)
+			rotation =  dir.angle()
 			if !on_cooldown:
 				attack()
 
