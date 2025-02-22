@@ -3,15 +3,15 @@
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_avws7"]
 [ext_resource type="Shader" path="res://Shaders/parryFlash.gdshader" id="2_8y42r"]
 [ext_resource type="Script" path="res://Scripts/DebugEnemy.gd" id="3_5ywbv"]
-[ext_resource type="Texture2D" uid="uid://w6honfb5qbg4" path="res://Resources/Sprites/blue-circle.svg" id="3_dw3vp"]
+[ext_resource type="Texture2D" uid="uid://ctk7lnvlmdb31" path="res://Resources/Sprites/blue-circle-with-eyes.png" id="3_db5vu"]
 [ext_resource type="Script" path="res://Senes/progress_bar.gd" id="3_paudk"]
 [ext_resource type="Script" path="res://Scripts/EnemyDetection.gd" id="4_0cfay"]
 [ext_resource type="Script" path="res://Scripts/AnimationPlayer.gd" id="5_gnpn2"]
 [ext_resource type="AudioStream" uid="uid://dvuadi7p7nk8" path="res://Resources/Sounds/player_hurt.wav" id="6_024fd"]
 [ext_resource type="AudioStream" uid="uid://dp87h1xlmr6o" path="res://Resources/Sounds/glass-ting-89283.mp3" id="7_afo2j"]
-[ext_resource type="Texture2D" uid="uid://dhrbn3m0ma0ig" path="res://Resources/Sprites/yellow-circle.svg" id="7_s44vx"]
 [ext_resource type="AudioStream" uid="uid://cw5sesbo5s4rd" path="res://Resources/Sounds/parry_sound.wav" id="8_owhsw"]
 [ext_resource type="Texture2D" uid="uid://byk277wk4ea8" path="res://Resources/Sprites/yellow-sword.png" id="9_004sd"]
+[ext_resource type="Texture2D" uid="uid://bcglwr1pgqcao" path="res://Resources/Sprites/yellow-circle-with-eyes.png" id="10_s7jqq"]
 [ext_resource type="AudioStream" uid="uid://ddodhwpivbtkv" path="res://Resources/Sounds/enemy_attack.wav" id="12_amcp4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gu3l8"]
@@ -285,7 +285,7 @@ debug_color = Color(0.972549, 0, 0.431373, 0.419608)
 [node name="Sprite2D" type="Sprite2D" parent="GameBoard/Player"]
 material = SubResource("ShaderMaterial_tr7vv")
 scale = Vector2(0.18, 0.1825)
-texture = ExtResource("3_dw3vp")
+texture = ExtResource("3_db5vu")
 
 [node name="Timer" type="Timer" parent="GameBoard/Player"]
 
@@ -327,8 +327,9 @@ shape = SubResource("CircleShape2D_gu3l8")
 debug_color = Color(0.972549, 0, 0.431373, 0.419608)
 
 [node name="Sprite2D" type="Sprite2D" parent="GameBoard/DebugEnemy"]
+rotation = -1.57079
 scale = Vector2(0.1825, 0.1825)
-texture = ExtResource("7_s44vx")
+texture = ExtResource("10_s7jqq")
 
 [node name="DetectionArea" type="Area2D" parent="GameBoard/DebugEnemy"]
 position = Vector2(-248, -284)
