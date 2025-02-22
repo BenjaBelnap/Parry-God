@@ -50,12 +50,12 @@ func change_state(new_state):
 func _ready():
 	$Timer.wait_time = parry_cooldown
 	
-	if is_in_group("player"):
-		print("Player is in the group!")
 	var parry:Animation = anim_player.get_animation("parry")
-	parry.track_set_key_value(1,0,parry_timer.perfect_window)
-	parry.track_set_key_value(1,1,parry_timer.normal_window)
-	parry.track_set_key_value(1,2,parry_cooldown)
+	#print(parry.track_get_key_value())
+	
+	parry.track_set_key_time(1,0,parry_timer.perfect_window)
+	parry.track_set_key_time(1,1,parry_timer.normal_window)
+	parry.track_set_key_time(1,2,parry_cooldown)
 	parry.set_length(parry_cooldown)
 
 
