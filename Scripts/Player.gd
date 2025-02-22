@@ -30,6 +30,8 @@ var parry_lockout = false
 @onready var camera:Camera2D = $Camera2D
 @onready var hp_bar:ProgressBar = $Camera2D/Control/HpBar
 
+signal dead
+
 
 func on_hit(attack_damage: int):
 	var timing = $Timer.wait_time - $Timer.time_left
@@ -61,6 +63,8 @@ func take_damage(attack_damage: int):
 	hp = hp - attack_damage
 	hp_bar.value = hp
 	hurt_audio.play()
+	if hp <= 0:
+		emit_signal("dead")
 
 
 func attack():
