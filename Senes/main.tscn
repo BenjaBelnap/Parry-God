@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dy8cy52mvjbr5"]
+[gd_scene load_steps=22 format=3 uid="uid://dy4m8ss7nlmor"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_avws7"]
 [ext_resource type="Shader" path="res://Shaders/parryFlash.gdshader" id="2_8y42r"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Senes/progress_bar.gd" id="3_paudk"]
 [ext_resource type="Script" path="res://Scripts/EnemyDetection.gd" id="4_0cfay"]
 [ext_resource type="Script" path="res://Scripts/AnimationPlayer.gd" id="5_gnpn2"]
+[ext_resource type="AudioStream" uid="uid://dvuadi7p7nk8" path="res://Resources/Sounds/player_hurt.wav" id="6_024fd"]
 [ext_resource type="Texture2D" uid="uid://dhrbn3m0ma0ig" path="res://Resources/Sprites/yellow-circle.svg" id="7_s44vx"]
 [ext_resource type="Texture2D" uid="uid://byk277wk4ea8" path="res://Resources/Sprites/yellow-sword.png" id="9_004sd"]
 
@@ -292,6 +293,9 @@ libraries = {
 "": SubResource("AnimationLibrary_t6vxr")
 }
 script = ExtResource("5_gnpn2")
+
+[node name="HurtAudio" type="AudioStreamPlayer2D" parent="GameBoard/Player"]
+stream = ExtResource("6_024fd")
 
 [node name="DebugEnemy" type="CharacterBody2D" parent="GameBoard"]
 position = Vector2(310, 312)

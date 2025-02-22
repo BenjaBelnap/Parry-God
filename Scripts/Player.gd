@@ -24,6 +24,7 @@ var input_lockout = false
 var parry_lockout = false
 
 @onready var anim_player:AnimationPlayer = $AnimationPlayer
+@onready var hurt_audio:AudioStreamPlayer2D = $HurtAudio
 
 func on_hit(attack_damage: int):
 	var timing = $Timer.wait_time - $Timer.time_left
@@ -47,6 +48,7 @@ func on_hit(attack_damage: int):
 func take_damage(attack_damage: int):
 	anim_player.play("hurt")
 	hp = hp - attack_damage
+	hurt_audio.play()
 
 
 func attack():
