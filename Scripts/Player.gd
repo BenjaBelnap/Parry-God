@@ -20,6 +20,7 @@ class ParryTiming:
 var parry_timer = ParryTiming.new()
 var input_lockout = false
 
+@onready var anim_player = $AnimationPlayer
 
 func take_damage(attack_damage: int):
 	var timing = $Timer.wait_time - $Timer.time_left
@@ -46,6 +47,10 @@ func _ready():
 	
 	if is_in_group("player"):
 		print("Player is in the group!")
+	var parry:Animation = anim_player.get_animation("parry")
+	parry.track_set_key_value(1,0,parry_timer.perfect_window)
+	parry.track_set_key_value(1,1,parry_timer.normal_window)
+	parry.track_set_key_value(1,2,parry_cooldown)
 
 
 func _physics_process(delta):
@@ -57,6 +62,7 @@ func _physics_process(delta):
 			input_lockout = true
 			$Timer.start()
 			print("Start parry.")
+			anim_player.play("parry")
 		if Input.is_action_pressed("move_up"):
 			input_dir.y -= 1
 		if Input.is_action_pressed("move_down"):
