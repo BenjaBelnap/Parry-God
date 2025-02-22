@@ -86,7 +86,7 @@ func _physics_process(delta: float) -> void:
 		navigation_agent.target_position = player.global_position
 		if position.distance_to(navigation_agent.target_position) > 200:
 			velocity = global_position.direction_to(navigation_agent.get_next_path_position()) * max_speed
-
+#
 			#if input_dir != Vector2.ZERO:
 				## Apply acceleration
 				#velocity = velocity.move_toward(input_dir * max_speed, acceleration * delta)
