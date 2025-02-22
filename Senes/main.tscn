@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dy8cy52mvjbr5"]
+[gd_scene load_steps=24 format=3 uid="uid://dy4m8ss7nlmor"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_avws7"]
 [ext_resource type="Shader" path="res://Shaders/parryFlash.gdshader" id="2_8y42r"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://Scripts/EnemyDetection.gd" id="4_0cfay"]
 [ext_resource type="Script" path="res://Scripts/AnimationPlayer.gd" id="5_gnpn2"]
 [ext_resource type="AudioStream" uid="uid://dvuadi7p7nk8" path="res://Resources/Sounds/player_hurt.wav" id="6_024fd"]
+[ext_resource type="AudioStream" uid="uid://dp87h1xlmr6o" path="res://Resources/Sounds/glass-ting-89283.mp3" id="7_afo2j"]
 [ext_resource type="Texture2D" uid="uid://dhrbn3m0ma0ig" path="res://Resources/Sprites/yellow-circle.svg" id="7_s44vx"]
 [ext_resource type="Texture2D" uid="uid://byk277wk4ea8" path="res://Resources/Sprites/yellow-sword.png" id="9_004sd"]
 
@@ -261,6 +262,7 @@ _data = {
 vertices = PackedVector2Array(1138.03, 635, 9.03125, 635, 10.9609, 14.9766, 1139.96, 13.0078)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(1, 5, 1150, 3, 1148, 645, -1, 645)])
+source_geometry_group_name = &"navigation_polygon_source_group"
 
 [node name="Main" type="Node2D"]
 
@@ -299,8 +301,14 @@ libraries = {
 }
 script = ExtResource("5_gnpn2")
 
-[node name="HurtAudio" type="AudioStreamPlayer2D" parent="GameBoard/Player"]
+[node name="Audio" type="Node2D" parent="GameBoard/Player"]
+
+[node name="HurtAudio" type="AudioStreamPlayer2D" parent="GameBoard/Player/Audio"]
 stream = ExtResource("6_024fd")
+volume_db = -21.562
+
+[node name="PerfectParry" type="AudioStreamPlayer2D" parent="GameBoard/Player/Audio"]
+stream = ExtResource("7_afo2j")
 
 [node name="DebugEnemy" type="CharacterBody2D" parent="GameBoard"]
 position = Vector2(310, 312)
