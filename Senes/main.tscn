@@ -17,7 +17,7 @@ height = 216.0
 
 [sub_resource type="Animation" id="Animation_pma10"]
 resource_name = "swipe"
-length = 0.58
+length = 0.68
 step = 0.0265
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -30,6 +30,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(0.217638, 0.267944),
 "update": 0,
 "values": [0.0, 1.5708]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AttackHitbox:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.159, 0.5565, 0.6625),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_11n7b"]
@@ -80,6 +92,9 @@ shape = SubResource("CircleShape2D_fa4uc")
 [node name="Timer" type="Timer" parent="GameBoard/DebugEnemy"]
 
 [node name="AttackHitbox" type="Area2D" parent="GameBoard/DebugEnemy"]
+modulate = Color(1, 1, 1, 0)
+z_index = -1
+rotation = 1.5708
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameBoard/DebugEnemy/AttackHitbox"]
 z_index = 1
