@@ -26,6 +26,7 @@ var parry_lockout = false
 @onready var anim_player:AnimationPlayer = $AnimationPlayer
 @onready var hurt_audio:AudioStreamPlayer2D = $Audio/HurtAudio
 @onready var perfect_audio = $Audio/PerfectParry
+@onready var parry_audio = $Audio/NormalParry
 
 func on_hit(attack_damage: int):
 	var timing = $Timer.wait_time - $Timer.time_left
@@ -39,6 +40,7 @@ func on_hit(attack_damage: int):
 		elif parry_timer.is_normal_parry(timing):
 			$Energy.add_energy(attack_damage)
 			print("Normal parry.")
+			parry_audio.play()
 		else:
 			print("Failed parry. Took ", attack_damage, " damage.")
 			take_damage(attack_damage)
