@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dy4m8ss7nlmor"]
+[gd_scene load_steps=10 format=3 uid="uid://dy4m8ss7nlmor"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_avws7"]
 [ext_resource type="Texture2D" uid="uid://bb2qihyijd2v1" path="res://icon.svg" id="1_eqsmv"]
@@ -10,6 +10,32 @@ radius = 57.85
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fa4uc"]
 radius = 446.45
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_avm3e"]
+radius = 11.0
+height = 216.0
+
+[sub_resource type="Animation" id="Animation_pma10"]
+resource_name = "swipe"
+length = 0.58
+step = 0.0265
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AttackHitbox:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.2385, 0.53),
+"transitions": PackedFloat32Array(0.217638, 0.267944),
+"update": 0,
+"values": [0.0, 1.5708]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_11n7b"]
+_data = {
+"swipe": SubResource("Animation_pma10")
+}
 
 [node name="Main" type="Node2D"]
 
@@ -41,19 +67,37 @@ debug_color = Color(0.972549, 0, 0.431373, 0.419608)
 [node name="Sprite2D" type="Sprite2D" parent="GameBoard/DebugEnemy"]
 texture = ExtResource("1_eqsmv")
 
-[node name="Area2D" type="Area2D" parent="GameBoard/DebugEnemy"]
+[node name="DetectionArea" type="Area2D" parent="GameBoard/DebugEnemy"]
 position = Vector2(-248, -284)
 script = ExtResource("4_0cfay")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GameBoard/DebugEnemy/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameBoard/DebugEnemy/DetectionArea"]
 position = Vector2(248, 284)
 shape = SubResource("CircleShape2D_fa4uc")
 
 [node name="Timer" type="Timer" parent="GameBoard/DebugEnemy"]
 
+[node name="AttackHitbox" type="Area2D" parent="GameBoard/DebugEnemy"]
+rotation = 1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameBoard/DebugEnemy/AttackHitbox"]
+z_index = 1
+position = Vector2(0, -107)
+shape = SubResource("CapsuleShape2D_avm3e")
+
+[node name="Sprite2D" type="Sprite2D" parent="GameBoard/DebugEnemy/AttackHitbox"]
+position = Vector2(0.499998, -109)
+scale = Vector2(0.195313, 1.65625)
+texture = ExtResource("1_eqsmv")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GameBoard/DebugEnemy"]
+libraries = {
+"": SubResource("AnimationLibrary_11n7b")
+}
+
 [node name="MainMenu" type="Node2D" parent="."]
 
-[connection signal="body_entered" from="GameBoard/DebugEnemy/Area2D" to="GameBoard/DebugEnemy/Area2D" method="_on_body_entered"]
-[connection signal="body_exited" from="GameBoard/DebugEnemy/Area2D" to="GameBoard/DebugEnemy/Area2D" method="_on_body_exited"]
-[connection signal="player_detected" from="GameBoard/DebugEnemy/Area2D" to="GameBoard/DebugEnemy" method="_on_player_detected"]
+[connection signal="body_entered" from="GameBoard/DebugEnemy/DetectionArea" to="GameBoard/DebugEnemy/DetectionArea" method="_on_body_entered"]
+[connection signal="body_exited" from="GameBoard/DebugEnemy/DetectionArea" to="GameBoard/DebugEnemy/DetectionArea" method="_on_body_exited"]
+[connection signal="player_detected" from="GameBoard/DebugEnemy/DetectionArea" to="GameBoard/DebugEnemy" method="_on_player_detected"]
 [connection signal="timeout" from="GameBoard/DebugEnemy/Timer" to="GameBoard/DebugEnemy" method="_on_timer_timeout"]
