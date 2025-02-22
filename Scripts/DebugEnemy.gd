@@ -41,7 +41,7 @@ func _on_player_detected(new_player):
 	player = new_player
 	change_state(State.ATTACK)
 	attack_hit.connect(player._on_hit)
-	#player.attack_hit.connect(_on_hit)
+	player.attack_hit.connect(_on_hit)
 
 func _on_player_lost():
 	player = null

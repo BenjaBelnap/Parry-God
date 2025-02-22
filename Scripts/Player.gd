@@ -51,13 +51,15 @@ func _on_hit(attack_damage: int):
 			anim_player.play("parry_success", 0)
 			$Energy.add_energy(attack_damage)
 			parry_audio.play()
-
+		else:
+			take_damage(attack_damage)
+	else:
 		take_damage(attack_damage)
 		
 
 func take_damage(attack_damage: int):
 	anim_player.play("hurt")
-	hp -= attack_damage
+	hp = hp - attack_damage
 	hp_bar.value = hp
 	hurt_audio.play()
 	if hp <= 0:
@@ -72,11 +74,16 @@ func attack():
 		print("Player attacks!")
 		anim_player.play("attack")
 		$Energy.clear_energy()
-		attack_hitbox.monitering = true
+		attack_hitbox.monitoring = true
+		attack_hitbox.visible = true
+		await get_tree().create_timer(0.2).timeout
+		attack_hitbox.monitoring = false
+		attack_hitbox.visible = false
 
 
-func _on_attack_hit():
-	return
+func _on_attack_hit(enemy):
+	print("Player attack hit.")
+	
 
 
 func change_state(new_state):
@@ -87,8 +94,8 @@ func _ready():
 	$Timer.wait_time = parry_cooldown
 	
 	anim_player.update_parry_timing(parry_timer.perfect_window,parry_timer.normal_window,parry_cooldown)
-	attack_hit.connect(_on_attack_hit)
 	attack_hitbox.monitoring = false
+	attack_hit.connect(_on_attack_hit)
 
 
 func _physics_process(delta):

@@ -432,10 +432,10 @@ value = 100.0
 show_percentage = false
 
 [node name="AttackHitbox" type="Area2D" parent="GameBoard/Player"]
+rotation = -0.0254318
 script = ExtResource("14_7wyu5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameBoard/Player/AttackHitbox"]
-visible = false
 position = Vector2(-105, 1)
 shape = SubResource("RectangleShape2D_1mf5i")
 
