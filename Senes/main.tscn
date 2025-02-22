@@ -16,7 +16,7 @@ radius = 446.45
 [node name="GameBoard" type="Node2D" parent="."]
 
 [node name="Player" type="CharacterBody2D" parent="GameBoard" groups=["player"]]
-position = Vector2(563, 320)
+position = Vector2(858, 319)
 script = ExtResource("1_avws7")
 acceleration = 3045
 
@@ -55,3 +55,4 @@ shape = SubResource("CircleShape2D_fa4uc")
 [connection signal="body_entered" from="GameBoard/DebugEnemy/Area2D" to="GameBoard/DebugEnemy/Area2D" method="_on_body_entered"]
 [connection signal="body_exited" from="GameBoard/DebugEnemy/Area2D" to="GameBoard/DebugEnemy/Area2D" method="_on_body_exited"]
 [connection signal="player_detected" from="GameBoard/DebugEnemy/Area2D" to="GameBoard/DebugEnemy" method="_on_player_detected"]
+[connection signal="timeout" from="GameBoard/DebugEnemy/Timer" to="GameBoard/DebugEnemy" method="_on_timer_timeout"]
