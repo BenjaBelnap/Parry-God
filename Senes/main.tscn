@@ -1,25 +1,21 @@
-[gd_scene load_steps=39 format=3 uid="uid://dy4m8ss7nlmor"]
+[gd_scene load_steps=30 format=3 uid="uid://dy4m8ss7nlmor"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_6h4b3"]
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_avws7"]
 [ext_resource type="Shader" path="res://Shaders/parryFlash.gdshader" id="2_8y42r"]
 [ext_resource type="Script" path="res://Scripts/GameBoard.gd" id="2_w3ol3"]
-[ext_resource type="Script" path="res://Scripts/DebugEnemy.gd" id="3_5ywbv"]
 [ext_resource type="Texture2D" uid="uid://ctk7lnvlmdb31" path="res://Resources/Sprites/blue-circle-with-eyes.png" id="3_db5vu"]
 [ext_resource type="Script" path="res://Senes/progress_bar.gd" id="3_paudk"]
-[ext_resource type="Script" path="res://Scripts/EnemyDetection.gd" id="4_0cfay"]
 [ext_resource type="Script" path="res://Scripts/PlayerSprite.gd" id="4_1fwwc"]
 [ext_resource type="Script" path="res://Scripts/AnimationPlayer.gd" id="5_gnpn2"]
 [ext_resource type="AudioStream" uid="uid://dvuadi7p7nk8" path="res://Resources/Sounds/player_hurt.wav" id="6_024fd"]
 [ext_resource type="AudioStream" uid="uid://dp87h1xlmr6o" path="res://Resources/Sounds/glass-ting-89283.mp3" id="7_afo2j"]
 [ext_resource type="Texture2D" uid="uid://dhrbn3m0ma0ig" path="res://Resources/Sprites/yellow-circle.svg" id="7_s44vx"]
-[ext_resource type="Texture2D" uid="uid://byk277wk4ea8" path="res://Resources/Sprites/yellow-sword.png" id="9_004sd"]
 [ext_resource type="AudioStream" uid="uid://dd08e7cep1ps7" path="res://Resources/Sounds/low-ting.wav" id="9_iqx0v"]
 [ext_resource type="Script" path="res://Scripts/playerCam.gd" id="10_mxeii"]
-[ext_resource type="Texture2D" uid="uid://bcglwr1pgqcao" path="res://Resources/Sprites/yellow-circle-with-eyes.png" id="10_s7jqq"]
-[ext_resource type="AudioStream" uid="uid://ddodhwpivbtkv" path="res://Resources/Sounds/enemy_attack.wav" id="12_amcp4"]
 [ext_resource type="Script" path="res://Senes/attack_hitbox.gd" id="14_7wyu5"]
 [ext_resource type="Texture2D" uid="uid://b7g7f534gp4ss" path="res://Resources/Sprites/Maps/debug.png" id="16_gvwr3"]
+[ext_resource type="PackedScene" uid="uid://bc7yu2c5oj827" path="res://Senes/debug_enemy.tscn" id="16_jhhag"]
 [ext_resource type="Texture2D" uid="uid://dqgvv4tln5sv2" path="res://Resources/Sprites/pngegg.png" id="19_2u1jo"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gu3l8"]
@@ -258,53 +254,6 @@ _data = {
 "parry_success": SubResource("Animation_d6jvf")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_fa4uc"]
-radius = 446.45
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_avm3e"]
-radius = 11.0
-height = 216.0
-
-[sub_resource type="Animation" id="Animation_pma10"]
-resource_name = "swipe"
-length = 0.997
-step = 0.0265
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AttackHitbox:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.265, 0.583, 0.742),
-"transitions": PackedFloat32Array(1.46409, 3.24902, 0.482969),
-"update": 0,
-"values": [0.0, 0.205949, 3.14159]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AttackHitbox:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1325, 0.8215, 0.9805),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_11n7b"]
-_data = {
-"swipe": SubResource("Animation_pma10")
-}
-
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_ie0wx"]
-vertices = PackedVector2Array(1138.03, 635, 9.03125, 635, 10.9609, 14.9766, 1139.96, 13.0078)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(1, 5, 1150, 3, 1139, 639, 5, 639)])
-source_geometry_group_name = &"navigation_polygon_source_group"
-
 [sub_resource type="Animation" id="Animation_77t2u"]
 resource_name = "fade_in"
 length = 2.002
@@ -444,62 +393,7 @@ step = 1.0
 value = 100.0
 show_percentage = false
 
-[node name="DebugEnemy" type="CharacterBody2D" parent="GameBoard"]
-position = Vector2(310, 312)
-script = ExtResource("3_5ywbv")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GameBoard/DebugEnemy"]
-z_index = 1
-shape = SubResource("CircleShape2D_gu3l8")
-debug_color = Color(0.972549, 0, 0.431373, 0.419608)
-
-[node name="Sprite2D" type="Sprite2D" parent="GameBoard/DebugEnemy"]
-rotation = -1.57079
-scale = Vector2(0.1825, 0.1825)
-texture = ExtResource("10_s7jqq")
-
-[node name="DetectionArea" type="Area2D" parent="GameBoard/DebugEnemy"]
-position = Vector2(-248, -284)
-script = ExtResource("4_0cfay")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GameBoard/DebugEnemy/DetectionArea"]
-position = Vector2(248, 284)
-shape = SubResource("CircleShape2D_fa4uc")
-
-[node name="Timer" type="Timer" parent="GameBoard/DebugEnemy"]
-
-[node name="AttackHitbox" type="Area2D" parent="GameBoard/DebugEnemy"]
-modulate = Color(1, 1, 1, 0)
-z_index = -1
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GameBoard/DebugEnemy/AttackHitbox"]
-z_index = 1
-position = Vector2(0, -107)
-shape = SubResource("CapsuleShape2D_avm3e")
-
-[node name="Sprite2D" type="Sprite2D" parent="GameBoard/DebugEnemy/AttackHitbox"]
-position = Vector2(-0.000385284, -106)
-rotation = -1.57079
-scale = Vector2(0.458059, 0.480997)
-texture = ExtResource("9_004sd")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="GameBoard/DebugEnemy"]
-libraries = {
-"": SubResource("AnimationLibrary_11n7b")
-}
-
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="GameBoard/DebugEnemy"]
-
-[node name="Audio" type="Node2D" parent="GameBoard/DebugEnemy"]
-
-[node name="Swing" type="AudioStreamPlayer2D" parent="GameBoard/DebugEnemy/Audio"]
-position = Vector2(548, 7)
-stream = ExtResource("12_amcp4")
-
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="GameBoard/DebugEnemy"]
-position = Vector2(-655, -458)
-scale = Vector2(1.16818, 1.42015)
-navigation_polygon = SubResource("NavigationPolygon_ie0wx")
+[node name="DebugEnemy" parent="GameBoard" instance=ExtResource("16_jhhag")]
 
 [node name="Game Over" type="Control" parent="GameBoard"]
 layout_mode = 3
@@ -529,7 +423,3 @@ libraries = {
 
 [connection signal="dead" from="GameBoard/Player" to="GameBoard" method="_on_player_death"]
 [connection signal="timeout" from="GameBoard/Player/Timer" to="GameBoard/Player" method="_on_timer_timeout"]
-[connection signal="body_entered" from="GameBoard/DebugEnemy/DetectionArea" to="GameBoard/DebugEnemy/DetectionArea" method="_on_body_entered"]
-[connection signal="body_exited" from="GameBoard/DebugEnemy/DetectionArea" to="GameBoard/DebugEnemy/DetectionArea" method="_on_body_exited"]
-[connection signal="player_detected" from="GameBoard/DebugEnemy/DetectionArea" to="GameBoard/DebugEnemy" method="_on_player_detected"]
-[connection signal="timeout" from="GameBoard/DebugEnemy/Timer" to="GameBoard/DebugEnemy" method="_on_timer_timeout"]
