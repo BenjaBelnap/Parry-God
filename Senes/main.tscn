@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://dy4m8ss7nlmor"]
+[gd_scene load_steps=27 format=3 uid="uid://dy4m8ss7nlmor"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_avws7"]
 [ext_resource type="Shader" path="res://Shaders/parryFlash.gdshader" id="2_8y42r"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://ctk7lnvlmdb31" path="res://Resources/Sprites/blue-circle-with-eyes.png" id="3_db5vu"]
 [ext_resource type="Script" path="res://Senes/progress_bar.gd" id="3_paudk"]
 [ext_resource type="Script" path="res://Scripts/EnemyDetection.gd" id="4_0cfay"]
+[ext_resource type="Script" path="res://Scripts/PlayerSprite.gd" id="4_1fwwc"]
 [ext_resource type="Script" path="res://Scripts/AnimationPlayer.gd" id="5_gnpn2"]
 [ext_resource type="AudioStream" uid="uid://dvuadi7p7nk8" path="res://Resources/Sounds/player_hurt.wav" id="6_024fd"]
 [ext_resource type="AudioStream" uid="uid://dp87h1xlmr6o" path="res://Resources/Sounds/glass-ting-89283.mp3" id="7_afo2j"]
@@ -284,8 +285,10 @@ debug_color = Color(0.972549, 0, 0.431373, 0.419608)
 
 [node name="Sprite2D" type="Sprite2D" parent="GameBoard/Player"]
 material = SubResource("ShaderMaterial_tr7vv")
+rotation = -4.71238
 scale = Vector2(0.18, 0.1825)
 texture = ExtResource("3_db5vu")
+script = ExtResource("4_1fwwc")
 
 [node name="Timer" type="Timer" parent="GameBoard/Player"]
 
