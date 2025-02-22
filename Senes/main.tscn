@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dy8cy52mvjbr5"]
+[gd_scene load_steps=26 format=3 uid="uid://dy4m8ss7nlmor"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_avws7"]
 [ext_resource type="Shader" path="res://Shaders/parryFlash.gdshader" id="2_8y42r"]
@@ -10,7 +10,9 @@
 [ext_resource type="AudioStream" uid="uid://dvuadi7p7nk8" path="res://Resources/Sounds/player_hurt.wav" id="6_024fd"]
 [ext_resource type="AudioStream" uid="uid://dp87h1xlmr6o" path="res://Resources/Sounds/glass-ting-89283.mp3" id="7_afo2j"]
 [ext_resource type="Texture2D" uid="uid://dhrbn3m0ma0ig" path="res://Resources/Sprites/yellow-circle.svg" id="7_s44vx"]
+[ext_resource type="AudioStream" uid="uid://cw5sesbo5s4rd" path="res://Resources/Sounds/parry_sound.wav" id="8_owhsw"]
 [ext_resource type="Texture2D" uid="uid://byk277wk4ea8" path="res://Resources/Sprites/yellow-sword.png" id="9_004sd"]
+[ext_resource type="AudioStream" uid="uid://ddodhwpivbtkv" path="res://Resources/Sounds/enemy_attack.wav" id="12_amcp4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gu3l8"]
 radius = 57.85
@@ -288,6 +290,7 @@ texture = ExtResource("3_dw3vp")
 [node name="Timer" type="Timer" parent="GameBoard/Player"]
 
 [node name="Energy" type="ProgressBar" parent="GameBoard/Player"]
+z_index = 1
 offset_left = -89.0
 offset_top = -99.0
 offset_right = 89.0
@@ -309,6 +312,10 @@ volume_db = -21.562
 
 [node name="PerfectParry" type="AudioStreamPlayer2D" parent="GameBoard/Player/Audio"]
 stream = ExtResource("7_afo2j")
+
+[node name="NormalParry" type="AudioStreamPlayer2D" parent="GameBoard/Player/Audio"]
+stream = ExtResource("8_owhsw")
+volume_db = -13.035
 
 [node name="DebugEnemy" type="CharacterBody2D" parent="GameBoard"]
 position = Vector2(310, 312)
@@ -355,6 +362,12 @@ libraries = {
 }
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="GameBoard/DebugEnemy"]
+
+[node name="Audio" type="Node2D" parent="GameBoard/DebugEnemy"]
+
+[node name="Swing" type="AudioStreamPlayer2D" parent="GameBoard/DebugEnemy/Audio"]
+position = Vector2(548, 7)
+stream = ExtResource("12_amcp4")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="GameBoard"]
 navigation_polygon = SubResource("NavigationPolygon_ie0wx")
