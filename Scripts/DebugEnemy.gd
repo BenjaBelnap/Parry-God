@@ -6,6 +6,9 @@ enum State { IDLE, ATTACK }  # Define states
 @export var attack_damage = 100  # Damage dealt
 @export var attack_range = 100  # Distance to attack
 
+@export var max_hp = 10
+@export var curr_hp = max_hp
+
 @export var max_speed = 300	# Top speed
 @export var acceleration = 2000 # How fast we speed up
 @export var friction = 3000  # How fast we slow down
@@ -36,6 +39,11 @@ func _ready():
 
 func _on_hit(attack_damage: int):
 	print("Enemy got hit.")
+	curr_hp -= attack_damage
+	if curr_hp < 0:
+		print("Enemy died.")
+		queue_free()
+	
 
 func _on_player_detected(new_player):
 	player = new_player
