@@ -10,8 +10,8 @@
 [ext_resource type="Script" path="res://Scripts/AnimationPlayer.gd" id="5_gnpn2"]
 [ext_resource type="AudioStream" uid="uid://dvuadi7p7nk8" path="res://Resources/Sounds/player_hurt.wav" id="6_024fd"]
 [ext_resource type="AudioStream" uid="uid://dp87h1xlmr6o" path="res://Resources/Sounds/glass-ting-89283.mp3" id="7_afo2j"]
-[ext_resource type="AudioStream" uid="uid://cw5sesbo5s4rd" path="res://Resources/Sounds/parry_sound.wav" id="8_owhsw"]
 [ext_resource type="Texture2D" uid="uid://byk277wk4ea8" path="res://Resources/Sprites/yellow-sword.png" id="9_004sd"]
+[ext_resource type="AudioStream" uid="uid://dd08e7cep1ps7" path="res://Resources/Sounds/low-ting.wav" id="9_iqx0v"]
 [ext_resource type="Texture2D" uid="uid://bcglwr1pgqcao" path="res://Resources/Sprites/yellow-circle-with-eyes.png" id="10_s7jqq"]
 [ext_resource type="AudioStream" uid="uid://ddodhwpivbtkv" path="res://Resources/Sounds/enemy_attack.wav" id="12_amcp4"]
 
@@ -317,8 +317,7 @@ volume_db = -21.562
 stream = ExtResource("7_afo2j")
 
 [node name="NormalParry" type="AudioStreamPlayer2D" parent="GameBoard/Player/Audio"]
-stream = ExtResource("8_owhsw")
-volume_db = -13.035
+stream = ExtResource("9_iqx0v")
 
 [node name="DebugEnemy" type="CharacterBody2D" parent="GameBoard"]
 position = Vector2(310, 312)
