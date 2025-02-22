@@ -1,16 +1,21 @@
-[gd_scene load_steps=4 format=3 uid="uid://dy4m8ss7nlmor"]
+[gd_scene load_steps=7 format=3 uid="uid://dy4m8ss7nlmor"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_avws7"]
 [ext_resource type="Texture2D" uid="uid://bb2qihyijd2v1" path="res://icon.svg" id="1_eqsmv"]
+[ext_resource type="Script" path="res://Scripts/DebugEnemy.gd" id="3_5ywbv"]
+[ext_resource type="Script" path="res://Scripts/EnemyDetection.gd" id="4_0cfay"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gu3l8"]
 radius = 57.85
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fa4uc"]
+radius = 446.45
 
 [node name="Main" type="Node2D"]
 
 [node name="GameBoard" type="Node2D" parent="."]
 
-[node name="Player" type="CharacterBody2D" parent="GameBoard"]
+[node name="Player" type="CharacterBody2D" parent="GameBoard" groups=["player"]]
 position = Vector2(563, 320)
 script = ExtResource("1_avws7")
 acceleration = 3045
@@ -23,15 +28,30 @@ debug_color = Color(0.972549, 0, 0.431373, 0.419608)
 [node name="Sprite2D" type="Sprite2D" parent="GameBoard/Player"]
 texture = ExtResource("1_eqsmv")
 
-[node name="Enemy" type="CharacterBody2D" parent="GameBoard"]
-position = Vector2(248, 284)
+[node name="DebugEnemy" type="CharacterBody2D" parent="GameBoard"]
+position = Vector2(310, 312)
+script = ExtResource("3_5ywbv")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GameBoard/Enemy"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameBoard/DebugEnemy"]
 z_index = 1
 shape = SubResource("CircleShape2D_gu3l8")
 debug_color = Color(0.972549, 0, 0.431373, 0.419608)
 
-[node name="Sprite2D" type="Sprite2D" parent="GameBoard/Enemy"]
+[node name="Sprite2D" type="Sprite2D" parent="GameBoard/DebugEnemy"]
 texture = ExtResource("1_eqsmv")
 
+[node name="Area2D" type="Area2D" parent="GameBoard/DebugEnemy"]
+position = Vector2(-248, -284)
+script = ExtResource("4_0cfay")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameBoard/DebugEnemy/Area2D"]
+position = Vector2(248, 284)
+shape = SubResource("CircleShape2D_fa4uc")
+
+[node name="Timer" type="Timer" parent="GameBoard/DebugEnemy"]
+
 [node name="MainMenu" type="Node2D" parent="."]
+
+[connection signal="body_entered" from="GameBoard/DebugEnemy/Area2D" to="GameBoard/DebugEnemy/Area2D" method="_on_body_entered"]
+[connection signal="body_exited" from="GameBoard/DebugEnemy/Area2D" to="GameBoard/DebugEnemy/Area2D" method="_on_body_exited"]
+[connection signal="player_detected" from="GameBoard/DebugEnemy/Area2D" to="GameBoard/DebugEnemy" method="_on_player_detected"]
