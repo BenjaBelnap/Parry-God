@@ -1,0 +1,102 @@
+[gd_scene load_steps=5 format=3 uid="uid://bqdujig1wbiue"]
+
+[ext_resource type="Script" path="res://Senes/level_timer.gd" id="1_fe0t5"]
+
+[sub_resource type="Animation" id="Animation_yvsu1"]
+resource_name = "start"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(10, 10), Vector2(10, 10), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-75, 0), Vector2(-75, 0), Vector2(500, -300)]
+}
+
+[sub_resource type="Animation" id="Animation_hamlr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-75, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hplpx"]
+_data = {
+"RESET": SubResource("Animation_hamlr"),
+"start": SubResource("Animation_yvsu1")
+}
+
+[node name="LevelTimer" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -75.0
+offset_right = -1152.0
+offset_bottom = -620.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fe0t5")
+
+[node name="Minutes" type="Label" parent="."]
+layout_mode = 0
+offset_left = 4.0
+offset_right = 44.0
+offset_bottom = 23.0
+text = "00:"
+
+[node name="Seconds" type="Label" parent="."]
+layout_mode = 0
+offset_left = 27.0
+offset_right = 51.0
+offset_bottom = 23.0
+text = "00:"
+
+[node name="Mseconds" type="Label" parent="."]
+layout_mode = 0
+offset_left = 50.0
+offset_right = 75.0
+offset_bottom = 23.0
+text = "00"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_hplpx")
+}

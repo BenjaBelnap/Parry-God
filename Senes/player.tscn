@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cy65mld73oh8k"]
+[gd_scene load_steps=23 format=3 uid="uid://cy65mld73oh8k"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_wbc43"]
 [ext_resource type="Script" path="res://Senes/attack_hitbox.gd" id="2_q6032"]
@@ -12,6 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://dp87h1xlmr6o" path="res://Resources/Sounds/glass-ting-89283.mp3" id="10_08v5r"]
 [ext_resource type="AudioStream" uid="uid://dd08e7cep1ps7" path="res://Resources/Sounds/low-ting.wav" id="11_1w50h"]
 [ext_resource type="Script" path="res://Scripts/playerCam.gd" id="12_p1jgr"]
+[ext_resource type="PackedScene" uid="uid://bqdujig1wbiue" path="res://Senes/level_timer.tscn" id="13_nqd4t"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gu3l8"]
 radius = 57.85
@@ -330,5 +331,9 @@ offset_bottom = 36.0
 step = 1.0
 value = 100.0
 show_percentage = false
+
+[node name="LevelTimer" parent="Camera2D" instance=ExtResource("13_nqd4t")]
+offset_right = -75.0
+offset_bottom = 0.0
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
