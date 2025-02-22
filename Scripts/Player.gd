@@ -21,15 +21,16 @@ var parry_timer = ParryTiming.new()
 var input_lockout = false
 
 
-func take_damage():
+func take_damage(attack_damage: int):
+	var timing = $Timer.wait_time - $Timer.time_left
+	print("Did I take damge at ", timing, " ms?")
 	if current_state == State.PARRY:
-		var timing = $Timer.wait_time
 		if parry_timer.is_perfect_parry(timing):
 			print("Perfect parry!")
 		elif parry_timer.is_normal_parry(timing):
 			print("Normal parry.")
 		else:
-			print("Failed parry.")
+			print("Failed parry. Took ", attack_damage, " damage.")
 
 
 func change_state(new_state):
