@@ -51,6 +51,7 @@ func _ready():
 	parry.track_set_key_value(1,0,parry_timer.perfect_window)
 	parry.track_set_key_value(1,1,parry_timer.normal_window)
 	parry.track_set_key_value(1,2,parry_cooldown)
+	parry.set_length(parry_cooldown)
 
 
 func _physics_process(delta):
