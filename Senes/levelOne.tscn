@@ -1,6 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://bg7igseywvdst"]
+[gd_scene load_steps=6 format=3 uid="uid://bvmyyghkx1yau"]
 
-[ext_resource type="Texture2D" uid="uid://bcp02ea3w5dmx" path="res://Resources/Sprites/levelOne.png" id="1_fa0yc"]
+[ext_resource type="Texture2D" path="res://Resources/Sprites/levelOne.png" id="1_fa0yc"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0o38k"]
 normal = Vector2(0, 2.62)

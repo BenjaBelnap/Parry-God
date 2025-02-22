@@ -29,8 +29,10 @@ var parry_lockout = false
 @onready var parry_audio = $Audio/NormalParry
 @onready var camera:Camera2D = $Camera2D
 @onready var hp_bar:ProgressBar = $Camera2D/Control/HpBar
+@onready var attack_hitbox: Area2D = $AttackHitbox
 
 signal dead
+signal attack_hit(damage)
 
 
 func _on_hit(attack_damage: int):
@@ -49,12 +51,9 @@ func _on_hit(attack_damage: int):
 			anim_player.play("parry_success", 0)
 			$Energy.add_energy(attack_damage)
 			parry_audio.play()
-			
 		else:
-
 			take_damage(attack_damage)
 	else:
-
 		take_damage(attack_damage)
 		
 
@@ -73,7 +72,20 @@ func take_damage(attack_damage: int):
 
 func attack():
 		print("Player attacks!")
+		anim_player.play("attack")
 		$Energy.clear_energy()
+		attack_hitbox.monitoring = true
+		attack_hitbox.visible = true
+		await get_tree().create_timer(0.2).timeout
+		attack_hitbox.monitoring = false
+		attack_hitbox.visible = false
+
+
+func _on_attack_hit(enemy):
+	if !enemy.is_in_group("player"):
+		print("Player attack hit.")
+		attack_hitbox.monitoring = false
+		emit_signal("attack_hit",50)
 
 
 func change_state(new_state):
@@ -83,10 +95,9 @@ func change_state(new_state):
 func _ready():
 	$Timer.wait_time = parry_cooldown
 	
-	#print(parry.track_get_key_value())
-	
 	anim_player.update_parry_timing(parry_timer.perfect_window,parry_timer.normal_window,parry_cooldown)
-
+	attack_hitbox.monitoring = false
+	attack_hitbox.body_entered.connect(_on_attack_hit)
 
 
 func _physics_process(delta):
@@ -101,6 +112,7 @@ func _physics_process(delta):
 			Input.action_release("parry")
 		elif Input.is_action_just_pressed("attack"):
 			if $Energy.is_full():
+				change_state(State.ATTACK)
 				attack()
 			else:
 				print("Not enough energy.")
@@ -123,6 +135,8 @@ func _physics_process(delta):
 		velocity = velocity.move_toward(Vector2.ZERO, friction * delta)
 
 	move_and_slide()
+
+
 func start_parry():
 	change_state(State.PARRY)
 	max_speed = max_speed*parry_speed
