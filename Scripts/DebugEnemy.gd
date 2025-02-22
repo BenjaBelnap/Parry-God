@@ -6,6 +6,11 @@ enum State { IDLE, ATTACK }  # Define states
 @export var attack_damage = 10  # Damage dealt
 @export var attack_range = 100  # Distance to attack
 
+@export var max_speed = 300	# Top speed
+@export var acceleration = 2000 # How fast we speed up
+@export var friction = 3000  # How fast we slow down
+@onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
+
 @onready var detectionArea: Area2D = $DetectionArea
 @onready var attackHitbox: Area2D = $AttackHitbox
 @onready var attackTimer: Timer = $Timer
@@ -73,4 +78,7 @@ func _on_timer_timeout():
 	
 
 func _physics_process(delta: float) -> void:
-	move_and_slide()
+	if player:
+		navigation_agent.target_position = player.global_position
+		velocity = global_position.direction_to(navigation_agent.get_next_path_position()) * max_speed
+		move_and_slide()
