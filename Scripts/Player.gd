@@ -20,12 +20,13 @@ class ParryTiming:
 var parry_timer = ParryTiming.new()
 var input_lockout = false
 
-@onready var anim_player = $AnimationPlayer
+@onready var anim_player:AnimationPlayer = $AnimationPlayer
 
 func take_damage(attack_damage: int):
 	var timing = $Timer.wait_time - $Timer.time_left
 	print("Did I take damge at ", timing, " ms?")
 	if current_state == State.PARRY:
+		anim_player.play("parry_success", 0)
 		if parry_timer.is_perfect_parry(timing):
 			$Energy.add_energy(attack_damage * 1.5)
 			print("Perfect parry!")
@@ -50,13 +51,9 @@ func change_state(new_state):
 func _ready():
 	$Timer.wait_time = parry_cooldown
 	
-	var parry:Animation = anim_player.get_animation("parry")
 	#print(parry.track_get_key_value())
 	
-	parry.track_set_key_time(1,0,parry_timer.perfect_window)
-	parry.track_set_key_time(1,1,parry_timer.normal_window)
-	parry.track_set_key_time(1,2,parry_cooldown)
-	parry.set_length(parry_cooldown)
+	anim_player.update_parry_timing(parry_timer.perfect_window,parry_timer.normal_window,parry_cooldown)
 
 
 func _physics_process(delta):
