@@ -1,9 +1,10 @@
-[gd_scene load_steps=18 format=3 uid="uid://dy4m8ss7nlmor"]
+[gd_scene load_steps=19 format=3 uid="uid://dy4m8ss7nlmor"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_avws7"]
 [ext_resource type="Texture2D" uid="uid://bb2qihyijd2v1" path="res://icon.svg" id="1_eqsmv"]
 [ext_resource type="Shader" path="res://Shaders/parryFlash.gdshader" id="2_8y42r"]
 [ext_resource type="Script" path="res://Scripts/DebugEnemy.gd" id="3_5ywbv"]
+[ext_resource type="Texture2D" uid="uid://w6honfb5qbg4" path="res://Resources/Sprites/blue-circle.svg" id="3_dw3vp"]
 [ext_resource type="Script" path="res://Senes/progress_bar.gd" id="3_paudk"]
 [ext_resource type="Script" path="res://Scripts/EnemyDetection.gd" id="4_0cfay"]
 [ext_resource type="Script" path="res://Scripts/AnimationPlayer.gd" id="5_gnpn2"]
@@ -212,7 +213,8 @@ debug_color = Color(0.972549, 0, 0.431373, 0.419608)
 
 [node name="Sprite2D" type="Sprite2D" parent="GameBoard/Player"]
 material = SubResource("ShaderMaterial_tr7vv")
-texture = ExtResource("1_eqsmv")
+scale = Vector2(0.18, 0.1825)
+texture = ExtResource("3_dw3vp")
 
 [node name="Timer" type="Timer" parent="GameBoard/Player"]
 
