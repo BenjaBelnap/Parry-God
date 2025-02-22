@@ -67,6 +67,8 @@ debug_color = Color(0.972549, 0, 0.431373, 0.419608)
 [node name="Sprite2D" type="Sprite2D" parent="GameBoard/Player"]
 texture = ExtResource("1_eqsmv")
 
+[node name="Timer" type="Timer" parent="GameBoard/Player"]
+
 [node name="DebugEnemy" type="CharacterBody2D" parent="GameBoard"]
 position = Vector2(310, 312)
 script = ExtResource("3_5ywbv")
@@ -111,6 +113,10 @@ libraries = {
 
 [node name="MainMenu" type="Node2D" parent="."]
 
+[connection signal="timeout" from="GameBoard/Player/Timer" to="GameBoard/Player" method="_on_timer_timeout"]
+[connection signal="body_entered" from="GameBoard/DebugEnemy/Area2D" to="GameBoard/DebugEnemy/Area2D" method="_on_body_entered"]
+[connection signal="body_exited" from="GameBoard/DebugEnemy/Area2D" to="GameBoard/DebugEnemy/Area2D" method="_on_body_exited"]
+[connection signal="player_detected" from="GameBoard/DebugEnemy/Area2D" to="GameBoard/DebugEnemy" method="_on_player_detected"]
 [connection signal="body_entered" from="GameBoard/DebugEnemy/DetectionArea" to="GameBoard/DebugEnemy/DetectionArea" method="_on_body_entered"]
 [connection signal="body_exited" from="GameBoard/DebugEnemy/DetectionArea" to="GameBoard/DebugEnemy/DetectionArea" method="_on_body_exited"]
 [connection signal="player_detected" from="GameBoard/DebugEnemy/DetectionArea" to="GameBoard/DebugEnemy" method="_on_player_detected"]
