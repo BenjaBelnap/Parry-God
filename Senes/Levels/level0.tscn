@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://4q7ru03m2l6q"]
 
 [ext_resource type="Script" path="res://Senes/Levels/level_1.gd" id="1_7xn57"]
-[ext_resource type="Texture2D" uid="uid://c6dta30do8hsa" path="res://Resources/Sprites/tutorialLevel (2).png" id="2_4mrf6"]
+[ext_resource type="Texture2D" uid="uid://c6dta30do8hsa" path="res://Resources/Sprites/Maps/tutorialLevel (2).png" id="2_4mrf6"]
 [ext_resource type="Texture2D" uid="uid://dio8jlc66fe6w" path="res://Resources/Sprites/debug (1).png" id="3_5li3l"]
 [ext_resource type="PackedScene" uid="uid://bc7yu2c5oj827" path="res://Senes/debug_enemy.tscn" id="3_5lk16"]
 
