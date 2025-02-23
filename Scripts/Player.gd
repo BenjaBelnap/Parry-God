@@ -77,11 +77,13 @@ func become_invincible(time:int):
 
 
 func take_damage(attack_damage: int):
-	hurt_audio.play()
 	if !is_invincible:
 		emit_signal("invincible",invincibility_on_hit)
 		anim_player.play("hurt")
 		hp = hp - attack_damage
+		hp_bar.value = hp
+		hurt_audio.play()
+		
 	if hp <= 0:
 		emit_signal("dead")
 		anim_player.play("die")
