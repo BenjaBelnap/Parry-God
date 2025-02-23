@@ -1,10 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://cxef0u25g5ipj"]
+[gd_scene load_steps=16 format=3 uid="uid://cxef0u25g5ipj"]
 
 [ext_resource type="Script" path="res://Senes/Levels/level_1.gd" id="1_1yn2q"]
 [ext_resource type="Texture2D" uid="uid://bcp02ea3w5dmx" path="res://Resources/Sprites/Maps/levelOne.png" id="2_8yqqb"]
 [ext_resource type="PackedScene" uid="uid://bc7yu2c5oj827" path="res://Senes/debug_enemy.tscn" id="3_s43ab"]
 [ext_resource type="PackedScene" uid="uid://bd82t1jifeknf" path="res://Senes/triple_hit_enemy.tscn" id="4_j8whw"]
-[ext_resource type="PackedScene" uid="uid://blwyos05uaf1b" path="res://Senes/pontiff_enemy.tscn" id="5_aymun"]
 [ext_resource type="Texture2D" uid="uid://dio8jlc66fe6w" path="res://Resources/Sprites/debug (1).png" id="6_cm6td"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0o38k"]
@@ -189,10 +188,7 @@ position = Vector2(2165, 725)
 position = Vector2(2176, 1559)
 
 [node name="DebugEnemy6" parent="Enemies" instance=ExtResource("4_j8whw")]
-position = Vector2(434, 2114)
-
-[node name="DebugEnemy" parent="Enemies" instance=ExtResource("5_aymun")]
-position = Vector2(2254, 2368)
+position = Vector2(2198, 2286)
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
 z_index = -3

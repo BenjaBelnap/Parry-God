@@ -44,6 +44,8 @@ signal attack_hit(damage)
 
 signal invincible(time)
 
+func win():
+	$Victory.win()
 
 func _on_hit(attack_damage: int):
 	var timing = parry_timer.wait_time - parry_timer.time_left

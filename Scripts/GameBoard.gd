@@ -23,6 +23,8 @@ func _on_enemy_death():
 	await get_tree().create_timer(2.1).timeout
 	if not enemies.get_children():
 		print("You beat the level.")
+		player.win()
+		await get_tree().create_timer(3).timeout
 		nuke_it = true
 		
 
