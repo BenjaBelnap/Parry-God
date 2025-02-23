@@ -53,6 +53,10 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Tutorial" type="Button" parent="LevelSelect"]
+layout_mode = 2
+text = "Tutorial"
+
 [node name="LevelOne" type="Button" parent="LevelSelect"]
 layout_mode = 2
 text = "Level One"
@@ -60,4 +64,5 @@ text = "Level One"
 [connection signal="pressed" from="MenuOne/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="MenuOne/OptionButton" to="." method="_on_option_button_pressed"]
 [connection signal="pressed" from="MenuOne/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="LevelSelect/Tutorial" to="." method="_on_tutorial_pressed"]
 [connection signal="pressed" from="LevelSelect/LevelOne" to="." method="_on_level_one_pressed"]
