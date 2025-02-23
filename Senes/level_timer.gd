@@ -11,6 +11,7 @@ signal time_up
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$AnimationPlayer.play("start")
+	total_time = Global.level_data[Global.level]["time"]
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
