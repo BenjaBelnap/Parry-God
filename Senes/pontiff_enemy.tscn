@@ -1,11 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://bc7yu2c5oj827"]
+[gd_scene load_steps=14 format=3 uid="uid://blwyos05uaf1b"]
 
-[ext_resource type="Script" path="res://Scripts/DebugEnemy.gd" id="1_pgxdx"]
-[ext_resource type="Texture2D" uid="uid://bcglwr1pgqcao" path="res://Resources/Sprites/yellow-circle-with-eyes.png" id="2_vjma8"]
-[ext_resource type="Script" path="res://Scripts/EnemyDetection.gd" id="3_ykpk8"]
-[ext_resource type="Texture2D" uid="uid://byk277wk4ea8" path="res://Resources/Sprites/yellow-sword.png" id="4_vicid"]
-[ext_resource type="AudioStream" uid="uid://ddodhwpivbtkv" path="res://Resources/Sounds/enemy_attack.wav" id="5_q50wa"]
-[ext_resource type="AudioStream" uid="uid://bdifynsque42q" path="res://Resources/Sounds/enemyDeath.wav" id="6_c4mwl"]
+[ext_resource type="Script" path="res://Scripts/Pontiff_Enemy.gd" id="1_3pvv8"]
+[ext_resource type="Texture2D" uid="uid://bcglwr1pgqcao" path="res://Resources/Sprites/yellow-circle-with-eyes.png" id="2_1m3l1"]
+[ext_resource type="Script" path="res://Scripts/EnemyDetection.gd" id="3_abgqp"]
+[ext_resource type="Texture2D" uid="uid://byk277wk4ea8" path="res://Resources/Sprites/yellow-sword.png" id="4_s05rj"]
+[ext_resource type="AudioStream" uid="uid://ddodhwpivbtkv" path="res://Resources/Sounds/enemy_attack.wav" id="5_52cxn"]
+[ext_resource type="AudioStream" uid="uid://bdifynsque42q" path="res://Resources/Sounds/enemyDeath.wav" id="6_hn4l4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gu3l8"]
 radius = 57.85
@@ -73,7 +73,7 @@ source_geometry_group_name = &"navigation_polygon_source_group"
 
 [node name="DebugEnemy" type="CharacterBody2D"]
 position = Vector2(310, 312)
-script = ExtResource("1_pgxdx")
+script = ExtResource("1_3pvv8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 z_index = 1
@@ -83,11 +83,11 @@ debug_color = Color(0.972549, 0, 0.431373, 0.419608)
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = -1.57079
 scale = Vector2(0.1825, 0.1825)
-texture = ExtResource("2_vjma8")
+texture = ExtResource("2_1m3l1")
 
 [node name="DetectionArea" type="Area2D" parent="."]
 position = Vector2(-248, -284)
-script = ExtResource("3_ykpk8")
+script = ExtResource("3_abgqp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
 position = Vector2(248, 284)
@@ -108,7 +108,7 @@ shape = SubResource("CapsuleShape2D_avm3e")
 position = Vector2(-0.000385284, -106)
 rotation = -1.57079
 scale = Vector2(0.458059, 0.480997)
-texture = ExtResource("4_vicid")
+texture = ExtResource("4_s05rj")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -122,11 +122,11 @@ path_postprocessing = 1
 
 [node name="Swing" type="AudioStreamPlayer2D" parent="Audio"]
 position = Vector2(548, 7)
-stream = ExtResource("5_q50wa")
+stream = ExtResource("5_52cxn")
 
 [node name="Death" type="AudioStreamPlayer2D" parent="Audio"]
 position = Vector2(548, 7)
-stream = ExtResource("6_c4mwl")
+stream = ExtResource("6_hn4l4")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 position = Vector2(-655, -458)

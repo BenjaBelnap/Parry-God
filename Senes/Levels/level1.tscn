@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://bvmyyghkx1yau"]
+[gd_scene load_steps=15 format=3 uid="uid://bvmyyghkx1yau"]
 
 [ext_resource type="Script" path="res://Senes/Levels/level_1.gd" id="1_hm43o"]
 [ext_resource type="Texture2D" uid="uid://bcp02ea3w5dmx" path="res://Resources/Sprites/Maps/levelOne.png" id="1_tncgw"]
 [ext_resource type="PackedScene" uid="uid://bc7yu2c5oj827" path="res://Senes/debug_enemy.tscn" id="2_ixokb"]
+[ext_resource type="PackedScene" uid="uid://bd82t1jifeknf" path="res://Senes/triple_hit_enemy.tscn" id="4_m7bev"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0o38k"]
 normal = Vector2(0, 2.62)
@@ -190,3 +191,6 @@ position = Vector2(2165, 725)
 
 [node name="DebugEnemy5" parent="Enemies" instance=ExtResource("2_ixokb")]
 position = Vector2(2176, 1559)
+
+[node name="DebugEnemy6" parent="Enemies" instance=ExtResource("4_m7bev")]
+position = Vector2(434, 2114)
