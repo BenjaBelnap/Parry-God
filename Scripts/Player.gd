@@ -107,7 +107,7 @@ func attack():
 func _on_attack_hit(enemy):
 	if !enemy.is_in_group("player"):
 		print("Player attack hit.")
-		attack_hitbox.monitoring = false
+		attack_hitbox.set_deferred("monitoring", false)
 		emit_signal("attack_hit",50)
 
 
