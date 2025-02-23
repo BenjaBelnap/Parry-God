@@ -19,7 +19,8 @@ class ParryTiming:
 @export var current_state = State.IDLE
 @onready var hp = max_hp
 @export var parry_cooldown = 1.0	# Seconds between parries
-var parry_timer = ParryTiming.new()
+var parry_timing = ParryTiming.new()
+@onready var parry_timer = $ParryTimer
 var input_lockout = false
 var parry_lockout = false
 
@@ -36,17 +37,17 @@ signal attack_hit(damage)
 
 
 func _on_hit(attack_damage: int):
-	var timing = $Timer.wait_time - $Timer.time_left
+	var timing = parry_timer.wait_time - parry_timer.time_left
 	print("Did I take damge at ", timing, " ms?")
 	if current_state == State.PARRY:
-		if parry_timer.is_perfect_parry(timing):
+		if parry_timing.is_perfect_parry(timing):
 			end_parry()
 			anim_player.play("parry_success", 0)
 			$Energy.add_energy(attack_damage * 1.5)
 			perfect_audio.play()
 			print("Perfect parry!")
 			print("max Speed:", max_speed)
-		elif parry_timer.is_normal_parry(timing):
+		elif parry_timing.is_normal_parry(timing):
 			end_parry()
 			anim_player.play("parry_success", 0)
 			$Energy.add_energy(attack_damage)
@@ -93,9 +94,9 @@ func change_state(new_state):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$Timer.wait_time = parry_cooldown
+	parry_timer.wait_time = parry_cooldown
 	
-	anim_player.update_parry_timing(parry_timer.perfect_window,parry_timer.normal_window,parry_cooldown)
+	anim_player.update_parry_timing(parry_timing.perfect_window,parry_timing.normal_window,parry_cooldown)
 	attack_hitbox.monitoring = false
 	attack_hitbox.body_entered.connect(_on_attack_hit)
 
@@ -141,7 +142,7 @@ func start_parry():
 	change_state(State.PARRY)
 	max_speed = max_speed*parry_speed
 	parry_lockout = true
-	$Timer.start()
+	parry_timer.start()
 	print("Start parry.")
 	anim_player.play("parry")
 	
@@ -153,7 +154,7 @@ func end_parry():
 
 	elif current_state == State.ATTACK:
 		print("End attack.")
-	$Timer.stop()
+	parry_timer.stop()
 
 func _on_timer_timeout():
 	end_parry()

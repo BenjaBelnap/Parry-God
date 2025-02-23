@@ -282,7 +282,7 @@ scale = Vector2(0.18, 0.1825)
 texture = ExtResource("5_72kk3")
 script = ExtResource("6_wjdxs")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="ParryTimer" type="Timer" parent="."]
 
 [node name="Energy" type="ProgressBar" parent="."]
 z_index = 1
@@ -338,4 +338,4 @@ offset_top = -291.0
 offset_right = -606.0
 offset_bottom = -291.0
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="ParryTimer" to="." method="_on_timer_timeout"]
