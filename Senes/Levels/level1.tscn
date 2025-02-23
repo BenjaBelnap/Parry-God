@@ -1,5 +1,6 @@
-[gd_scene load_steps=13 format=3 uid="uid://bvmyyghkx1yau"]
+[gd_scene load_steps=14 format=3 uid="uid://bvmyyghkx1yau"]
 
+[ext_resource type="Script" path="res://Senes/Levels/level_1.gd" id="1_hm43o"]
 [ext_resource type="Texture2D" uid="uid://bcp02ea3w5dmx" path="res://Resources/Sprites/Maps/levelOne.png" id="1_tncgw"]
 [ext_resource type="PackedScene" uid="uid://bc7yu2c5oj827" path="res://Senes/debug_enemy.tscn" id="2_ixokb"]
 
@@ -29,6 +30,7 @@ size = Vector2(3.22922, 108.082)
 size = Vector2(35.2993, 3.70609)
 
 [node name="LevelOne" type="Node2D"]
+script = ExtResource("1_hm43o")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = -2
