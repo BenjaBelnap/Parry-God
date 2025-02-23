@@ -80,21 +80,6 @@ func attack():
 	print("Enemy attacks!")  
 	on_cooldown = true
 	animationPlayer.play("swipe")  # Play attack animation
-	
-	# Enable attack hitbox briefly
-	await get_tree().create_timer(0.55).timeout
-	attackHitbox.monitoring = true
-	await get_tree().create_timer(0.2).timeout
-	swing_audio.play()
-	await get_tree().create_timer(0.3).timeout
-	await get_tree().create_timer(0.08).timeout
-	swing_audio.play()
-	await get_tree().create_timer(0.3).timeout
-	await get_tree().create_timer(0.45).timeout
-	swing_audio.play()
-	await get_tree().create_timer(0.2).timeout
-	attackHitbox.monitoring = false
-
 	attackTimer.start()
 
 func _on_attack_hit(body):

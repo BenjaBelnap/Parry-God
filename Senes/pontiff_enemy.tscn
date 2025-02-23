@@ -1,7 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://blwyos05uaf1b"]
+[gd_scene load_steps=15 format=3 uid="uid://blwyos05uaf1b"]
 
 [ext_resource type="Script" path="res://Scripts/Pontiff_Enemy.gd" id="1_3pvv8"]
-[ext_resource type="Texture2D" uid="uid://bcglwr1pgqcao" path="res://Resources/Sprites/yellow-circle-with-eyes.png" id="2_1m3l1"]
+[ext_resource type="Texture2D" uid="uid://bthuklkiiha2d" path="res://Resources/Sprites/white-circle-with-eyes.png" id="2_mx1w5"]
 [ext_resource type="Script" path="res://Scripts/EnemyDetection.gd" id="3_abgqp"]
 [ext_resource type="Texture2D" uid="uid://byk277wk4ea8" path="res://Resources/Sprites/yellow-sword.png" id="4_s05rj"]
 [ext_resource type="AudioStream" uid="uid://ddodhwpivbtkv" path="res://Resources/Sounds/enemy_attack.wav" id="5_52cxn"]
@@ -34,6 +34,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_72vck"]
+length = 5.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -41,10 +42,10 @@ tracks/0/path = NodePath("AttackHitbox:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.265, 0.583, 0.742),
-"transitions": PackedFloat32Array(1.46409, 3.24902, 0.482969),
+"times": PackedFloat32Array(0.552632, 0.763158, 1.02632, 1.10526, 1.39474, 1.63158, 1.86842, 2.13158, 2.21053, 2.5, 3.06667, 3.16667, 3.5, 4.1, 4.2, 4.5),
+"transitions": PackedFloat32Array(1.46409, 0.329878, 0.196146, 0.196146, 1.46409, 1.46409, 0.329878, 0.196146, 0.196146, 1.46409, 1.46409, 0.258817, 0.482969, 0.482969, 0.267944, 1.46409),
 "update": 0,
-"values": [0.0, 0.205949, 3.14159]
+"values": [0.0, 0.205949, 3.14159, 3.14159, 0.0, 0.0, 0.205949, 3.14159, 3.14159, 0.0, 0.0, 0.205949, 3.14159, 3.14159, 2.94961, 0.0]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -53,14 +54,66 @@ tracks/1/path = NodePath("AttackHitbox:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1325, 0.8215, 0.9805),
+"times": PackedFloat32Array(0, 0.1325, 4.73333, 4.96667),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Audio/Swing:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.8, 1.16667, 1.93333, 2.3, 3.3, 4.36667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, true, true, true, true, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AttackHitbox:monitoring")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.766667, 1.36667, 1.63333, 2.5, 3.06667, 3.5, 4.13333, 4.53333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_0nwrc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Audio/Swing:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AttackHitbox:monitoring")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_11n7b"]
 _data = {
+"RESET": SubResource("Animation_0nwrc"),
 "death": SubResource("Animation_j5csh"),
 "swipe": SubResource("Animation_72vck")
 }
@@ -83,7 +136,7 @@ debug_color = Color(0.972549, 0, 0.431373, 0.419608)
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = -1.57079
 scale = Vector2(0.1825, 0.1825)
-texture = ExtResource("2_1m3l1")
+texture = ExtResource("2_mx1w5")
 
 [node name="DetectionArea" type="Area2D" parent="."]
 position = Vector2(-248, -284)
