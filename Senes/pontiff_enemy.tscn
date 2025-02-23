@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=3 uid="uid://blwyos05uaf1b"]
 
 [ext_resource type="Script" path="res://Scripts/Pontiff_Enemy.gd" id="1_3pvv8"]
-[ext_resource type="Texture2D" uid="uid://bcglwr1pgqcao" path="res://Resources/Sprites/yellow-circle-with-eyes.png" id="2_1m3l1"]
+[ext_resource type="Texture2D" uid="uid://bthuklkiiha2d" path="res://Resources/Sprites/white-circle-with-eyes.png" id="2_mx1w5"]
 [ext_resource type="Script" path="res://Scripts/EnemyDetection.gd" id="3_abgqp"]
 [ext_resource type="Texture2D" uid="uid://byk277wk4ea8" path="res://Resources/Sprites/yellow-sword.png" id="4_s05rj"]
 [ext_resource type="AudioStream" uid="uid://ddodhwpivbtkv" path="res://Resources/Sounds/enemy_attack.wav" id="5_52cxn"]
@@ -136,7 +136,7 @@ debug_color = Color(0.972549, 0, 0.431373, 0.419608)
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = -1.57079
 scale = Vector2(0.1825, 0.1825)
-texture = ExtResource("2_1m3l1")
+texture = ExtResource("2_mx1w5")
 
 [node name="DetectionArea" type="Area2D" parent="."]
 position = Vector2(-248, -284)
