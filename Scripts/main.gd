@@ -32,3 +32,8 @@ func _on_quit_button_pressed() -> void:
 func _on_level_one_pressed():
 	Global.level = 1
 	start_game()
+
+
+func _on_tutorial_pressed():
+	Global.level = 0
+	start_game()

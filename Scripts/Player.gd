@@ -118,7 +118,7 @@ func change_state(new_state):
 func _ready():
 	parry_timer.wait_time = parry_cooldown
 	
-	#anim_player.update_parry_timing(parry_timing.perfect_window,parry_timing.normal_window,parry_cooldown)
+
 	attack_hitbox.monitoring = false
 	attack_hitbox.body_entered.connect(_on_attack_hit)
 

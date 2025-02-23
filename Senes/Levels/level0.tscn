@@ -1,0 +1,196 @@
+[gd_scene load_steps=12 format=3 uid="uid://4q7ru03m2l6q"]
+
+[ext_resource type="Script" path="res://Senes/Levels/level_1.gd" id="1_7xn57"]
+[ext_resource type="Texture2D" uid="uid://c6dta30do8hsa" path="res://Resources/Sprites/tutorialLevel (2).png" id="2_4mrf6"]
+[ext_resource type="PackedScene" uid="uid://bc7yu2c5oj827" path="res://Senes/debug_enemy.tscn" id="3_5lk16"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0o38k"]
+normal = Vector2(0, 2.62)
+distance = 0.381679
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_vln4x"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_lgjny"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_cxqbt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u4e1w"]
+resource_local_to_scene = true
+size = Vector2(1857.5, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1wur6"]
+resource_local_to_scene = true
+size = Vector2(18, 77)
+
+[sub_resource type="SystemFont" id="SystemFont_4ookk"]
+resource_local_to_scene = true
+font_names = PackedStringArray("Impact")
+font_italic = true
+
+[sub_resource type="Theme" id="Theme_ptwjf"]
+resource_local_to_scene = true
+default_font = SubResource("SystemFont_4ookk")
+default_font_size = 30
+
+[node name="LevelOne" type="Node2D"]
+script = ExtResource("1_7xn57")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -2
+position = Vector2(1282, 1277)
+scale = Vector2(2, 2)
+texture = ExtResource("2_4mrf6")
+
+[node name="Collisions" type="Node2D" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Collisions"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collisions/StaticBody2D"]
+position = Vector2(43, 40)
+shape = SubResource("WorldBoundaryShape2D_0o38k")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Collisions"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collisions/StaticBody2D2"]
+position = Vector2(43, 366)
+rotation = 1.5708
+shape = SubResource("WorldBoundaryShape2D_vln4x")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="Collisions"]
+position = Vector2(2477, -28)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collisions/StaticBody2D3"]
+position = Vector2(43, 366)
+rotation = 4.71239
+shape = SubResource("WorldBoundaryShape2D_lgjny")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="Collisions"]
+position = Vector2(1437, 2151)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collisions/StaticBody2D4"]
+position = Vector2(43, 366)
+rotation = 6.28319
+shape = SubResource("WorldBoundaryShape2D_cxqbt")
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="Collisions"]
+position = Vector2(107, 124)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collisions/StaticBody2D5"]
+position = Vector2(861.25, 353.004)
+shape = SubResource("RectangleShape2D_u4e1w")
+
+[node name="StaticBody2D6" type="StaticBody2D" parent="Collisions"]
+position = Vector2(1000, 242)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collisions/StaticBody2D6"]
+position = Vector2(1210, 698)
+rotation = 1.57079
+shape = SubResource("RectangleShape2D_u4e1w")
+
+[node name="StaticBody2D7" type="StaticBody2D" parent="Collisions"]
+position = Vector2(615, 696)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collisions/StaticBody2D7"]
+position = Vector2(1210, 698)
+rotation = 1.57079
+shape = SubResource("RectangleShape2D_u4e1w")
+
+[node name="StaticBody2D8" type="StaticBody2D" parent="Collisions"]
+position = Vector2(615, 696)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collisions/StaticBody2D8"]
+position = Vector2(1191, 295)
+rotation = 3.14159
+shape = SubResource("RectangleShape2D_u4e1w")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Collisions/StaticBody2D8"]
+position = Vector2(-134, -253.5)
+rotation = 3.14159
+shape = SubResource("RectangleShape2D_1wur6")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Collisions/StaticBody2D8"]
+position = Vector2(-134, -636)
+rotation = 3.14159
+shape = SubResource("RectangleShape2D_1wur6")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Collisions/StaticBody2D8"]
+position = Vector2(317, -635)
+rotation = 3.14159
+shape = SubResource("RectangleShape2D_1wur6")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Collisions/StaticBody2D8"]
+position = Vector2(313, -254)
+rotation = 3.14159
+shape = SubResource("RectangleShape2D_1wur6")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="Collisions/StaticBody2D8"]
+position = Vector2(761, -254)
+rotation = 3.14159
+shape = SubResource("RectangleShape2D_1wur6")
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="Collisions/StaticBody2D8"]
+position = Vector2(761, -632)
+rotation = 3.14159
+shape = SubResource("RectangleShape2D_1wur6")
+
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="Collisions/StaticBody2D8"]
+position = Vector2(1210, -633)
+rotation = 3.14159
+shape = SubResource("RectangleShape2D_1wur6")
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="DebugEnemy" parent="Enemies" instance=ExtResource("3_5lk16")]
+position = Vector2(1350, 252)
+
+[node name="DebugEnemy2" parent="Enemies" instance=ExtResource("3_5lk16")]
+position = Vector2(2007, 837)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme = SubResource("Theme_ptwjf")
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 129.0
+offset_top = 549.0
+offset_right = 407.0
+offset_bottom = 587.0
+text = "Welcome to Parry God!"
+
+[node name="Label2" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 540.0
+offset_top = 546.0
+offset_right = 818.0
+offset_bottom = 584.0
+text = "Left click to parry attacks 
+and fill your attack gauge
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 972.0
+offset_top = 552.0
+offset_right = 1333.0
+offset_bottom = 631.0
+text = "Right click to attack
+once your attack gauge is full"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label4" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 1409.0
+offset_top = 555.0
+offset_right = 1770.0
+offset_bottom = 634.0
+text = "Defeat all enemies
+to win"
+horizontal_alignment = 1
+vertical_alignment = 1
