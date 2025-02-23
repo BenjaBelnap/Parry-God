@@ -7,6 +7,7 @@ extends Node2D
 var level:PackedScene
 var level_instance:Node
 var enemies: Node
+var nuke_it = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	level = load("res://Senes/Levels/level" + str(Global.level) +".tscn")
@@ -21,11 +22,13 @@ func _on_enemy_death():
 	await get_tree().create_timer(2.1).timeout
 	if not enemies.get_children():
 		print("You beat the level.")
-		get_tree().change_scene_to_file("res://Senes/main.tscn")
+		nuke_it = true
+		
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	if nuke_it == true:
+		get_tree().change_scene_to_file("res://Senes/main.tscn")
 
 func test():
 	print("test")
@@ -36,7 +39,7 @@ func _on_player_death():
 	
 	game_over_anim.play("fade_in")
 	await get_tree().create_timer(2).timeout
-	get_tree().change_scene_to_file("res://Senes/main.tscn")
+	nuke_it = true
 
 
 func _on_audio_stream_player_finished():
