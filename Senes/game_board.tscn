@@ -46,6 +46,7 @@ _data = {
 script = ExtResource("1_v0frj")
 
 [node name="Player" parent="." instance=ExtResource("3_j30aj")]
+position = Vector2(228, 235)
 
 [node name="Game Over" type="Control" parent="."]
 layout_mode = 3
