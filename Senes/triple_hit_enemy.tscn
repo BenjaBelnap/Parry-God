@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bd82t1jifeknf"]
+[gd_scene load_steps=14 format=3 uid="uid://c360rarrskf5w"]
 
 [ext_resource type="Script" path="res://Scripts/Triple_Hit_Enemy.gd" id="1_ja43w"]
 [ext_resource type="Texture2D" uid="uid://bn46xjkhr6pix" path="res://Resources/Sprites/orange-circle-with-eyes.png" id="2_7b1n1"]

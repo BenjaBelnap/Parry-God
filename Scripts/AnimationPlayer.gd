@@ -9,10 +9,3 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
-
-func update_parry_timing(perfect:int, normal:int,duration):
-	for parry in parry_list:
-		parry.track_set_key_time(0,0,perfect)
-		parry.track_set_key_time(0,1,normal)
-		parry.track_set_key_time(0,2,duration)
-		parry.set_length(duration)
