@@ -19,10 +19,15 @@ class ParryTiming:
 @export var current_state = State.IDLE
 @onready var hp = max_hp
 @export var parry_cooldown = 1.0	# Seconds between parries
+@export var invincibility_on_hit = 1.5
+@export var invincibility_on_parry = 1.0
+
 var parry_timing = ParryTiming.new()
-@onready var parry_timer = $ParryTimer
+
 var input_lockout = false
 var parry_lockout = false
+
+var is_invincible = false
 
 @onready var anim_player:AnimationPlayer = $AnimationPlayer
 @onready var hurt_audio:AudioStreamPlayer2D = $Audio/HurtAudio
@@ -31,9 +36,13 @@ var parry_lockout = false
 @onready var camera:Camera2D = $Camera2D
 @onready var hp_bar:ProgressBar = $Camera2D/Control/HpBar
 @onready var attack_hitbox: Area2D = $AttackHitbox
+@onready var parry_timer = $ParryTimer
+
 
 signal dead
 signal attack_hit(damage)
+
+signal invincible(time)
 
 
 func _on_hit(attack_damage: int):
@@ -45,29 +54,40 @@ func _on_hit(attack_damage: int):
 			anim_player.play("parry_success", 0)
 			$Energy.add_energy(attack_damage * 1.5)
 			perfect_audio.play()
-			print("Perfect parry!")
-			print("max Speed:", max_speed)
+			become_invincible(invincibility_on_parry)
 		elif parry_timing.is_normal_parry(timing):
 			end_parry()
 			anim_player.play("parry_success", 0)
 			$Energy.add_energy(attack_damage)
 			parry_audio.play()
+			become_invincible(invincibility_on_parry)
 		else:
 			take_damage(attack_damage)
 	else:
 		take_damage(attack_damage)
 		
 
+func become_invincible(time:int):
+	print("invincible!")
+	is_invincible = true
+	await get_tree().create_timer(time).timeout
+	is_invincible = false
+	print("not invincible")
+	
+
+
 func take_damage(attack_damage: int):
-	anim_player.play("hurt")
-	hp = hp - attack_damage
-	hp_bar.value = hp
 	hurt_audio.play()
+	if !is_invincible:
+		emit_signal("invincible",invincibility_on_hit)
+		anim_player.play("hurt")
+		hp = hp - attack_damage
 	if hp <= 0:
 		emit_signal("dead")
 		anim_player.play("die")
 		input_lockout = true
 		await get_tree().create_timer(1.8).timeout
+	
 
 
 
