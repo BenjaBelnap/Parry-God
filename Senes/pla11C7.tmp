@@ -10,12 +10,14 @@
 [ext_resource type="AudioStream" uid="uid://dvuadi7p7nk8" path="res://Resources/Sounds/player_hurt.wav" id="9_hw21w"]
 [ext_resource type="AudioStream" uid="uid://dp87h1xlmr6o" path="res://Resources/Sounds/glass-ting-89283.mp3" id="10_08v5r"]
 [ext_resource type="AudioStream" uid="uid://dd08e7cep1ps7" path="res://Resources/Sounds/low-ting.wav" id="11_1w50h"]
-[ext_resource type="AudioStream" uid="uid://t4nrs6xmj45l" path="res://Resources/Sounds/magic_attack.wav" id="11_2hosh"]
 [ext_resource type="Script" path="res://Scripts/playerCam.gd" id="12_p1jgr"]
 [ext_resource type="PackedScene" uid="uid://bqdujig1wbiue" path="res://Senes/level_timer.tscn" id="13_nqd4t"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gu3l8"]
 radius = 57.85
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1mf5i"]
+size = Vector2(230, 242)
 
 [sub_resource type="Curve" id="Curve_fmc22"]
 min_value = -360.0
@@ -268,20 +270,23 @@ debug_color = Color(0.972549, 0, 0.431373, 0.419608)
 rotation = -0.0254318
 script = ExtResource("2_q6032")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AttackHitbox"]
-polygon = PackedVector2Array(1.94843, 2.05017, -209.387, -223.397, -306.181, 3.21515, -199.481, 212.996)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackHitbox"]
+visible = false
+position = Vector2(-105, 1)
+shape = SubResource("RectangleShape2D_1mf5i")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="AttackHitbox"]
 emitting = false
 amount = 100
+lifetime = 2.0
 one_shot = true
 explosiveness = 1.0
 direction = Vector2(-1, 0)
 gravity = Vector2(0, 0)
-initial_velocity_min = 150.0
-initial_velocity_max = 300.0
-angular_velocity_min = 100.0
-angular_velocity_max = 200.0
+initial_velocity_min = 500.0
+initial_velocity_max = 800.0
+angular_velocity_min = 500.0
+angular_velocity_max = 800.0
 angular_velocity_curve = SubResource("Curve_fmc22")
 scale_amount_min = 10.0
 scale_amount_max = 10.0
@@ -321,10 +326,6 @@ stream = ExtResource("10_08v5r")
 
 [node name="NormalParry" type="AudioStreamPlayer2D" parent="Audio"]
 stream = ExtResource("11_1w50h")
-
-[node name="Magic" type="AudioStreamPlayer2D" parent="Audio"]
-stream = ExtResource("11_2hosh")
-volume_db = -10.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position_smoothing_speed = 3.0

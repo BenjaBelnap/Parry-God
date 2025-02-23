@@ -89,7 +89,18 @@ func take_damage(attack_damage: int):
 		anim_player.play("die")
 		input_lockout = true
 		await get_tree().create_timer(1.8).timeout
+
+
+func flicker_particles():
+	var colors = [Color.RED, Color.BLUE, Color.PURPLE, Color.CYAN]
+	var tween = get_tree().create_tween()
 	
+	for i in range(10):  # Flicker 5 times
+		tween.tween_property($AttackHitbox/CPUParticles2D, "modulate", colors[randi() % colors.size()], 0.09)
+		tween.tween_property($AttackHitbox/CPUParticles2D, "modulate", Color.WHITE, 0.09)
+	
+	tween.tween_property($AttackHitbox/CPUParticles2D, "modulate", Color(1,1,1,0), 0.1)  # Fade out at the end
+
 
 
 
@@ -98,10 +109,13 @@ func attack():
 		#anim_player.play("attack")
 		$Energy.clear_energy()
 		attack_hitbox.monitoring = true
-		attack_hitbox.visible = true
+		$Camera2D.screen_shake(20, .1)
+		$AttackHitbox/CPUParticles2D.emitting = true
+		$Audio/Magic.play()
+		flicker_particles()
 		await get_tree().create_timer(0.2).timeout
 		attack_hitbox.monitoring = false
-		attack_hitbox.visible = false
+		$AttackHitbox/CPUParticles2D.emitting = true
 
 
 func _on_attack_hit(enemy):
