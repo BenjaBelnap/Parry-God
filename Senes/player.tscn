@@ -339,3 +339,4 @@ offset_right = -606.0
 offset_bottom = -291.0
 
 [connection signal="timeout" from="ParryTimer" to="." method="_on_timer_timeout"]
+[connection signal="time_up" from="Camera2D/LevelTimer" to="." method="_on_level_timer_time_up"]

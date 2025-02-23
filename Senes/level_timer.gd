@@ -6,6 +6,8 @@ var mseconds: int = 0
 var seconds: int = 0
 var minutes: int = 0
 
+signal time_up
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$AnimationPlayer.play("start")
@@ -25,3 +27,4 @@ func _process(delta: float) -> void:
 
 func stop() -> void:
 	set_process(false)
+	emit_signal("time_up")

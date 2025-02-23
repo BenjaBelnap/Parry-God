@@ -158,3 +158,10 @@ func end_parry():
 
 func _on_timer_timeout():
 	end_parry()
+
+
+func _on_level_timer_time_up() -> void:
+		emit_signal("dead")
+		anim_player.play("die")
+		input_lockout = true
+		await get_tree().create_timer(1.8).timeout
