@@ -10,6 +10,7 @@ var enemies: Node
 var nuke_it = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	print("loading level", Global.level)
 	level = load("res://Senes/Levels/level" + str(Global.level) +".tscn")
 	level_instance = level.instantiate()
 	add_child(level_instance)

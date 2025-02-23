@@ -82,12 +82,7 @@ func attack():
 	animationPlayer.play("swipe")  # Play attack animation
 	
 	# Enable attack hitbox briefly
-	await get_tree().create_timer(0.4).timeout
-	attackHitbox.monitoring = true
-	await get_tree().create_timer(0.1).timeout
-	swing_audio.play()
-	await get_tree().create_timer(0.3).timeout
-	attackHitbox.monitoring = false
+	await(animationPlayer.animation_finished)
 
 	attackTimer.start()
 

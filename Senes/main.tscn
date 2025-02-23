@@ -64,6 +64,10 @@ text = "Tutorial"
 layout_mode = 2
 text = "Level One"
 
+[node name="LevelTwo" type="Button" parent="LevelSelect"]
+layout_mode = 2
+text = "Level Two"
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = -2
 position = Vector2(581, 136)
@@ -81,4 +85,5 @@ script = ExtResource("4_5kkfj")
 [connection signal="pressed" from="MenuOne/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="LevelSelect/Tutorial" to="." method="_on_tutorial_pressed"]
 [connection signal="pressed" from="LevelSelect/LevelOne" to="." method="_on_level_one_pressed"]
+[connection signal="pressed" from="LevelSelect/LevelTwo" to="." method="_on_level_two_pressed"]
 [connection signal="finished" from="AudioStreamPlayer2D" to="AudioStreamPlayer2D" method="_on_finished"]

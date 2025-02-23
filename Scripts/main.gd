@@ -37,3 +37,8 @@ func _on_level_one_pressed():
 func _on_tutorial_pressed():
 	Global.level = 0
 	start_game()
+
+
+func _on_level_two_pressed():
+	Global.level = 2
+	start_game()

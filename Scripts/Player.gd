@@ -83,6 +83,7 @@ func take_damage(attack_damage: int):
 		hp = hp - attack_damage
 		hp_bar.value = hp
 		hurt_audio.play()
+		$Camera2D.screen_shake(5,.1)
 		
 	if hp <= 0:
 		emit_signal("dead")
