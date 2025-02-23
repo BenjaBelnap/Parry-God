@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://bd82t1jifeknf"]
 
 [ext_resource type="Script" path="res://Scripts/Triple_Hit_Enemy.gd" id="1_ja43w"]
-[ext_resource type="Texture2D" uid="uid://bcglwr1pgqcao" path="res://Resources/Sprites/yellow-circle-with-eyes.png" id="2_gixst"]
+[ext_resource type="Texture2D" uid="uid://bn46xjkhr6pix" path="res://Resources/Sprites/orange-circle-with-eyes.png" id="2_7b1n1"]
 [ext_resource type="Script" path="res://Scripts/EnemyDetection.gd" id="3_wb1d4"]
 [ext_resource type="Texture2D" uid="uid://byk277wk4ea8" path="res://Resources/Sprites/yellow-sword.png" id="4_lct1j"]
 [ext_resource type="Animation" uid="uid://cm4xdks3fmnwo" path="res://triple_hit_enemy_swipe.res" id="5_im1bs"]
@@ -58,7 +58,7 @@ debug_color = Color(0.972549, 0, 0.431373, 0.419608)
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = -1.57079
 scale = Vector2(0.1825, 0.1825)
-texture = ExtResource("2_gixst")
+texture = ExtResource("2_7b1n1")
 
 [node name="DetectionArea" type="Area2D" parent="."]
 position = Vector2(-248, -284)
