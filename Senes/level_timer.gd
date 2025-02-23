@@ -19,9 +19,9 @@ func _process(delta: float) -> void:
 	mseconds = fmod(total_time - time, 1) * 100
 	seconds = fmod(total_time - time, 60)
 	minutes = fmod(total_time - time, 3600) / 60
-	$Minutes.text = "%02d:" % minutes
-	$Seconds.text = "%02d:" % seconds
-	$Mseconds.text = "%02d" % mseconds
+	$Control/Minutes.text = "%02d:" % minutes
+	$Control/Seconds.text = "%02d:" % seconds
+	$Control/Mseconds.text = "%02d" % mseconds
 
 func stop() -> void:
 	set_process(false)

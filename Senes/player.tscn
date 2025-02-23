@@ -251,7 +251,7 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
-position = Vector2(858, 319)
+position = Vector2(578, 323)
 script = ExtResource("1_wbc43")
 acceleration = 4165
 friction = 4185
@@ -333,7 +333,9 @@ value = 100.0
 show_percentage = false
 
 [node name="LevelTimer" parent="Camera2D" instance=ExtResource("13_nqd4t")]
-offset_right = -75.0
-offset_bottom = 0.0
+offset_left = -606.0
+offset_top = -291.0
+offset_right = -606.0
+offset_bottom = -291.0
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
