@@ -294,7 +294,7 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
-position = Vector2(578, 323)
+position = Vector2(618, 398)
 script = ExtResource("1_wbc43")
 acceleration = 4165
 friction = 4185

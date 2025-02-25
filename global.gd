@@ -2,7 +2,7 @@ extends Node
 
 var level: int
 
-var level_data:Array = [{"time":240},{"time":100},{"time":45}]
+var level_data:Array = [{"time":240},{"time":100},{"time":45},{"time":30}]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
