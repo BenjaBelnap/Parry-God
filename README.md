@@ -2,4 +2,4 @@
  For Micro Jam 034
 
  Published game here:
- https://reeveho.itch.io/dashlet
+ https://itsbenjamon.itch.io/parry-god-10
